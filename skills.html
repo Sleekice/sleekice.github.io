@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Skills | Peter Tiewah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px;}
+    .skill-card{
+      background:var(--navy-card);border:1px solid rgba(46,117,182,0.2);
+      border-radius:12px;padding:26px;transition:var(--t);
+    }
+    .skill-card:hover{border-color:rgba(100,255,218,0.25);transform:translateY(-3px);}
+    .skill-card-icon{font-size:24px;margin-bottom:12px;}
+    .skill-card-title{
+      font-family:var(--mono);font-size:12px;font-weight:600;
+      color:var(--white);text-transform:uppercase;letter-spacing:1.5px;
+      margin-bottom:14px;
+    }
+    .skill-proficiency{
+      display:flex;align-items:center;gap:8px;margin-bottom:14px;
+    }
+    .prof-bar{flex:1;height:3px;background:rgba(46,117,182,0.2);border-radius:2px;overflow:hidden;}
+    .prof-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));
+      transition:width 1s var(--ease);}
+    .prof-label{font-family:var(--mono);font-size:10px;color:var(--cyan);white-space:nowrap;}
+
+    /* Code BG banner */
+    .code-banner{
+      position:relative;overflow:hidden;margin-bottom:0;
+    }
+    .code-banner-img{
+      width:100%;height:280px;object-fit:cover;
+      filter:brightness(0.2) saturate(0.3);
+    }
+    .code-banner-text{
+      position:absolute;inset:0;display:flex;
+      flex-direction:column;justify-content:center;
+      padding:0 80px;
+    }
+    .code-banner-text h2{
+      font-size:clamp(24px,4vw,42px);font-weight:700;
+      color:var(--white);letter-spacing:-1px;margin-bottom:8px;
+    }
+    .code-banner-text p{font-size:15px;color:var(--gray-light);max-width:520px;}
+
+    @media(max-width:960px){
+      .skills-grid{grid-template-columns:1fr;}
+      .code-banner-text{padding:0 24px;}
+    }
+  </style>
+</head>
+<body>
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-sub">Android · AI · Lagos</div>
+  <nav class="sidebar-nav">
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html" class="active"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="portfolio.html"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('code-symbol.jpg');"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Technical Skills</p>
+      <h1 class="page-title">The <span>Stack</span></h1>
+      <p class="page-desc">3+ years of production Android engineering, HPC research computing, and now M.S. AI studies — a full-spectrum technical toolkit.</p>
+    </div>
+  </div>
+
+  <!-- CODE BANNER -->
+  <div class="code-banner">
+    <img class="code-banner-img" src="code-monitors.jpg" alt="Code in progress"/>
+    <div class="code-banner-text">
+      <h2>Kotlin is primary.<br/>Everything else is additive.</h2>
+      <p>5+ years of Java, 3+ years of Kotlin in production. MVVM and Clean Architecture aren't just buzzwords — they're how I think about every screen I build.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">📱</div>
+        <div class="skill-card-title">Kotlin & Android Core</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:95%;"></div></div>
+          <span class="prof-label">Expert</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Kotlin</span><span class="pill highlight">Java</span>
+          <span class="pill highlight">Jetpack Compose</span>
+          <span class="pill">Suspend Functions</span><span class="pill">Sealed Classes</span>
+          <span class="pill">Extension Functions</span><span class="pill">Data Classes</span>
+          <span class="pill">Generics</span><span class="pill">Higher-order Functions</span>
+          <span class="pill">OOP</span><span class="pill">SOLID</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon">🏗️</div>
+        <div class="skill-card-title">Architecture</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:93%;"></div></div>
+          <span class="prof-label">Expert</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">MVVM</span><span class="pill highlight">Clean Architecture</span>
+          <span class="pill highlight">Multi-module</span>
+          <span class="pill">MVI</span><span class="pill">Repository Pattern</span>
+          <span class="pill">Use Cases</span><span class="pill">Observer Pattern</span>
+          <span class="pill">Factory / Builder / Singleton</span>
+          <span class="pill">Dependency Injection</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">⚡</div>
+        <div class="skill-card-title">Concurrency</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:90%;"></div></div>
+          <span class="prof-label">Expert</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Coroutines</span><span class="pill highlight">Flow</span>
+          <span class="pill highlight">StateFlow</span><span class="pill">SharedFlow</span>
+          <span class="pill">ViewModel</span><span class="pill">LiveData</span>
+          <span class="pill">RxJava</span><span class="pill">Executors</span>
+          <span class="pill">Background Processing</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon">🌐</div>
+        <div class="skill-card-title">Networking</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:90%;"></div></div>
+          <span class="prof-label">Expert</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Retrofit</span><span class="pill highlight">OkHttp</span>
+          <span class="pill">Volley</span><span class="pill">REST APIs</span>
+          <span class="pill">Gson / Moshi</span><span class="pill">Interceptors</span>
+          <span class="pill">Firebase</span><span class="pill">WireMock Cloud</span>
+          <span class="pill">Postman</span><span class="pill">Charles Proxy</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">💾</div>
+        <div class="skill-card-title">Storage</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:88%;"></div></div>
+          <span class="prof-label">Advanced</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Room</span><span class="pill">SQLite</span>
+          <span class="pill">DataStore</span><span class="pill">SharedPreferences</span>
+          <span class="pill">EncryptedSharedPrefs</span>
+          <span class="pill">FileProvider</span><span class="pill">Cache Management</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon">🔒</div>
+        <div class="skill-card-title">Security</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:82%;"></div></div>
+          <span class="prof-label">Advanced</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Android Keystore</span>
+          <span class="pill">SSL/TLS</span>
+          <span class="pill">Certificate Pinning</span>
+          <span class="pill">Network Security Config</span>
+          <span class="pill">ProGuard / R8</span>
+          <span class="pill">Obfuscation</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🔧</div>
+        <div class="skill-card-title">Build System</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:85%;"></div></div>
+          <span class="prof-label">Advanced</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Gradle Kotlin DSL</span>
+          <span class="pill">Build Variants</span>
+          <span class="pill">Product Flavors</span>
+          <span class="pill">Version Catalogs</span>
+          <span class="pill">Signing Configs</span>
+          <span class="pill">CI/CD</span>
+          <span class="pill">Azure DevOps</span>
+          <span class="pill">Jenkins</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon">🔬</div>
+        <div class="skill-card-title">Debugging & Inspection</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:90%;"></div></div>
+          <span class="prof-label">Expert</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Android Profiler</span>
+          <span class="pill">App Inspection</span>
+          <span class="pill">Database Inspector</span>
+          <span class="pill">Network Inspector</span>
+          <span class="pill">Layout Inspector</span>
+          <span class="pill">ADB / ADB Shell</span>
+          <span class="pill">Logcat</span>
+          <span class="pill">Crashlytics</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🧪</div>
+        <div class="skill-card-title">Testing</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:78%;"></div></div>
+          <span class="prof-label">Proficient</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">JUnit</span><span class="pill">MockK</span>
+          <span class="pill">Espresso</span><span class="pill">WireMock</span>
+          <span class="pill">Perfecto</span>
+          <span class="pill">Manual Testing</span>
+          <span class="pill">Integration Testing</span>
+          <span class="pill">Regression Testing</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-title">AI & Data (In Progress)</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:45%;"></div></div>
+          <span class="prof-label">Growing</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Machine Learning</span>
+          <span class="pill highlight">Data Analytics</span>
+          <span class="pill">Python</span><span class="pill">MPI</span>
+          <span class="pill">Parallel Computing</span>
+          <span class="pill">Matrix Operations</span>
+          <span class="pill">Graph Algorithms</span>
+          <span class="pill">Generative AI</span>
+          <span class="pill">NLP</span>
+          <span class="pill">Data Visualization</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🖥️</div>
+        <div class="skill-card-title">OS & Command Line</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:80%;"></div></div>
+          <span class="prof-label">Proficient</span>
+        </div>
+        <div class="pills">
+          <span class="pill">Linux</span><span class="pill">macOS</span>
+          <span class="pill">Windows</span><span class="pill">Bash</span>
+          <span class="pill">Shell Scripting</span>
+          <span class="pill">ADB Shell</span>
+          <span class="pill">Gradle CLI</span>
+          <span class="pill">Git CLI</span>
+          <span class="pill">SSH</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon">🔀</div>
+        <div class="skill-card-title">Version Control</div>
+        <div class="skill-proficiency">
+          <div class="prof-bar"><div class="prof-fill" style="width:88%;"></div></div>
+          <span class="prof-label">Advanced</span>
+        </div>
+        <div class="pills">
+          <span class="pill highlight">Git</span><span class="pill">GitHub</span>
+          <span class="pill">Azure DevOps</span>
+          <span class="pill">Git Flow</span><span class="pill">Rebase</span>
+          <span class="pill">Cherry-pick</span>
+          <span class="pill">Merge Conflict Resolution</span>
+          <span class="pill">Pull Requests</span>
+          <span class="pill">Code Reviews</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="owl-mark">🦉</span>
+    Designed & built by <span>Peter Tiewah</span> · Laurel, Maryland · © 2026
+    <span class="owl-mark">🦉</span>
+  </footer>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

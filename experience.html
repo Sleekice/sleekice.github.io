@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Experience | Peter Tiewah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* NFCU PHONE MOCKUP */
+    .nfcu-showcase{
+      display:grid;grid-template-columns:1fr 340px;
+      gap:64px;align-items:center;
+      padding:80px 80px;
+      background:linear-gradient(135deg,var(--navy) 0%,#0a1628 100%);
+      position:relative;overflow:hidden;
+    }
+    .nfcu-showcase::before{
+      content:'';position:absolute;right:-100px;top:-100px;
+      width:500px;height:500px;
+      background:radial-gradient(circle,rgba(46,117,182,0.15),transparent 70%);
+    }
+    .nfcu-text h2{
+      font-size:clamp(28px,4vw,48px);font-weight:700;
+      color:var(--white);letter-spacing:-2px;margin-bottom:16px;
+    }
+    .nfcu-text h2 span{color:var(--cyan);}
+    .nfcu-text p{font-size:15px;color:var(--gray-light);line-height:1.85;margin-bottom:16px;}
+    .nfcu-text p strong{color:var(--white);}
+    .nfcu-dates{
+      font-family:var(--mono);font-size:12px;color:var(--cyan);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;
+    }
+
+    /* PHONE SVG */
+    .phone-wrap{
+      position:relative;z-index:1;
+      filter:drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+    }
+    .phone-frame{
+      width:280px;background:#0a0a1a;
+      border-radius:36px;
+      border:2px solid rgba(255,255,255,0.12);
+      overflow:hidden;position:relative;
+      box-shadow:0 0 0 1px rgba(255,255,255,0.05) inset;
+    }
+    .phone-notch{
+      width:90px;height:24px;
+      background:#0a0a1a;border-radius:0 0 14px 14px;
+      margin:0 auto;position:relative;z-index:10;
+    }
+    .phone-screen{padding:0 0 20px;}
+
+    /* App UI inside phone */
+    .app-header{
+      background:linear-gradient(135deg,#003087,#0066cc);
+      padding:16px 18px 24px;
+      position:relative;
+    }
+    .app-logo-row{
+      display:flex;justify-content:space-between;align-items:center;
+      margin-bottom:16px;
+    }
+    .app-logo-text{
+      color:white;font-weight:700;font-size:13px;letter-spacing:0.5px;
+    }
+    .app-bell{color:rgba(255,255,255,0.8);font-size:16px;}
+    .app-greeting{color:rgba(255,255,255,0.85);font-size:11px;margin-bottom:4px;}
+    .app-balance{color:white;font-size:22px;font-weight:700;letter-spacing:-0.5px;}
+    .app-balance-label{color:rgba(255,255,255,0.6);font-size:10px;margin-top:2px;}
+
+    /* Credit Score card */
+    .app-credit-card{
+      margin:0 14px;margin-top:-16px;
+      background:white;border-radius:14px;
+      padding:14px 16px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.2);
+    }
+    .credit-score-row{display:flex;justify-content:space-between;align-items:center;}
+    .credit-label{font-size:10px;color:#555;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+    .credit-number{
+      font-size:28px;font-weight:700;
+      color:#003087;
+    }
+    .credit-badge{
+      font-size:9px;font-weight:700;
+      color:#22c55e;background:rgba(34,197,94,0.12);
+      border:1px solid rgba(34,197,94,0.3);
+      border-radius:20px;padding:2px 8px;
+    }
+    .credit-bar{
+      height:6px;background:#eee;border-radius:3px;margin-top:10px;overflow:hidden;
+    }
+    .credit-fill{height:100%;width:75%;background:linear-gradient(90deg,#f59e0b,#22c55e);border-radius:3px;}
+
+    /* Quick actions */
+    .quick-actions{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:8px;padding:14px;
+    }
+    .qa-item{
+      display:flex;flex-direction:column;align-items:center;gap:5px;
+    }
+    .qa-icon{
+      width:38px;height:38px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;color:white;
+    }
+    .qa-label{font-size:8px;color:#64748b;text-align:center;font-weight:500;}
+
+    /* Transactions */
+    .app-section-label{
+      padding:2px 14px 8px;
+      font-size:11px;font-weight:600;color:#334155;
+      text-transform:uppercase;letter-spacing:0.5px;
+    }
+    .transaction{
+      display:flex;align-items:center;gap:10px;
+      padding:8px 14px;border-bottom:1px solid #f1f5f9;
+    }
+    .tx-icon{
+      width:32px;height:32px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:14px;flex-shrink:0;
+    }
+    .tx-info{flex:1;}
+    .tx-name{font-size:11px;font-weight:600;color:#1e293b;}
+    .tx-date{font-size:9px;color:#94a3b8;margin-top:1px;}
+    .tx-amount{font-size:11px;font-weight:700;}
+    .tx-neg{color:#ef4444;}
+    .tx-pos{color:#22c55e;}
+
+    /* Financial insight banner */
+    .insights-bar{
+      margin:8px 14px;padding:10px 12px;
+      background:linear-gradient(135deg,#003087,#0055bb);
+      border-radius:10px;
+      display:flex;align-items:center;gap:10px;
+    }
+    .insights-bar-icon{font-size:18px;}
+    .insights-bar-text{flex:1;}
+    .insights-bar-title{font-size:11px;font-weight:600;color:white;}
+    .insights-bar-sub{font-size:9px;color:rgba(255,255,255,0.7);margin-top:1px;}
+
+    /* IMPACT BADGES */
+    .impact-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+      margin-top:32px;
+    }
+    .impact-badge{
+      background:var(--navy-card);border:1px solid rgba(46,117,182,0.2);
+      border-radius:10px;padding:20px;text-align:center;
+    }
+    .impact-num{
+      font-family:var(--mono);font-size:32px;font-weight:700;
+      color:var(--cyan);display:block;
+    }
+    .impact-label{font-size:12px;color:var(--gray);margin-top:4px;}
+
+    /* TABS */
+    .exp-tabs{
+      display:flex;
+      border-left:2px solid rgba(46,117,182,0.2);
+      margin-bottom:40px;flex-wrap:wrap;
+    }
+    [data-tab]{
+      padding:14px 20px;
+      font-family:var(--mono);font-size:12px;
+      color:var(--gray);cursor:pointer;
+      transition:var(--t);border-left:2px solid transparent;
+      white-space:nowrap;background:none;
+    }
+    [data-tab]:hover{color:var(--cyan);}
+    [data-tab].active{
+      color:var(--cyan);background:rgba(100,255,218,0.05);
+      border-left-color:var(--cyan);margin-left:-2px;
+    }
+    [data-panel]{display:none;}
+    [data-panel].active{display:block;}
+
+    .exp-role{font-size:20px;font-weight:600;color:var(--white);margin-bottom:4px;}
+    .exp-role span{color:var(--cyan);}
+    .exp-meta{font-family:var(--mono);font-size:12px;color:var(--gray);margin-bottom:24px;}
+    .exp-bullets{margin-bottom:24px;}
+    .exp-bullets li{
+      color:var(--gray-light);font-size:15px;line-height:1.75;
+      margin-bottom:12px;padding-left:20px;position:relative;
+    }
+    .exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--cyan);font-size:12px;}
+
+    .projects-showcase{
+      padding:16px 20px;
+      background:rgba(46,117,182,0.06);
+      border-radius:8px;border-left:3px solid var(--blue);
+      margin-top:20px;
+    }
+    .ps-label{
+      font-family:var(--mono);font-size:11px;color:var(--blue-bright);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;
+    }
+    .ps-tags{display:flex;flex-wrap:wrap;gap:8px;}
+    .ps-tag{
+      font-size:12px;color:var(--white);
+      background:rgba(46,117,182,0.18);
+      border:1px solid rgba(46,117,182,0.3);
+      border-radius:4px;padding:4px 12px;
+    }
+
+    /* CODE BG SECTION */
+    .code-bg-section{
+      position:relative;overflow:hidden;padding:0;
+    }
+    .code-bg-img{
+      width:100%;height:380px;object-fit:cover;object-position:center;
+      filter:brightness(0.25) saturate(0.4);
+    }
+    .code-bg-content{
+      position:absolute;inset:0;display:flex;
+      flex-direction:column;justify-content:center;
+      padding:0 80px;
+    }
+    .code-bg-content h2{
+      font-size:clamp(24px,4vw,48px);font-weight:700;
+      color:var(--white);letter-spacing:-1px;margin-bottom:16px;
+    }
+    .code-bg-content p{
+      font-size:16px;color:var(--gray-light);
+      max-width:580px;line-height:1.8;
+    }
+
+    @media(max-width:960px){
+      .nfcu-showcase{grid-template-columns:1fr;padding:60px 24px;}
+      .phone-wrap{display:none;}
+      .code-bg-content{padding:0 24px;}
+      .impact-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-sub">Android · AI · Lagos</div>
+  <nav class="sidebar-nav">
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="experience.html" class="active"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="portfolio.html"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('code-monitors.jpg');"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Professional Experience</p>
+      <h1 class="page-title">Where I've <span>Built</span></h1>
+      <p class="page-desc">3+ years of production Android engineering — from financial services banking apps to HPC research computing. Real code. Real users. Real impact.</p>
+    </div>
+  </div>
+
+  <!-- NFCU SHOWCASE -->
+  <div class="nfcu-showcase">
+    <div class="nfcu-text reveal">
+      <div class="page-eyebrow">Jan 2024 – Mar 2026 · Flagship Role</div>
+      <h2>Navy Federal<br/><span>Credit Union</span></h2>
+      <p class="nfcu-dates">Digital Engineer II · Senior Android Developer</p>
+      <p>Built native Android features for a large-scale banking application serving <strong>hundreds of thousands of members</strong> in a highly regulated financial services environment. Part of <strong>Team Overlord</strong> — a 20-person cross-functional Agile team.</p>
+      <p>Owned the <strong>Account Summary experience</strong> end-to-end, including Credit Score, Financial Insights, Personalized Offers, Charged-Off Account experience, and AEM Platform Migration. Built WireMock Cloud mock infrastructure that kept the entire team unblocked during backend outages.</p>
+      <div class="impact-grid">
+        <div class="impact-badge">
+          <span class="impact-num" data-count="500">0</span>
+          <span class="impact-label">K+ Members</span>
+        </div>
+        <div class="impact-badge">
+          <span class="impact-num" data-count="20">0</span>
+          <span class="impact-label">Person Team</span>
+        </div>
+        <div class="impact-badge">
+          <span class="impact-num" data-count="6">0</span>
+          <span class="impact-label">Major Projects</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHONE MOCKUP -->
+    <div class="phone-wrap reveal reveal-delay-2">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <!-- App Header -->
+          <div class="app-header">
+            <div class="app-logo-row">
+              <span class="app-logo-text">⚓ NavyFederal</span>
+              <span class="app-bell">🔔</span>
+            </div>
+            <div class="app-greeting">Good morning, Peter 👋</div>
+            <div class="app-balance">$24,750.00</div>
+            <div class="app-balance-label">Total Balance · Checking ••••4821</div>
+          </div>
+
+          <!-- Credit Score Card -->
+          <div class="app-credit-card">
+            <div class="credit-score-row">
+              <div>
+                <div class="credit-label">Credit Score</div>
+                <div class="credit-number">742</div>
+              </div>
+              <div>
+                <div class="credit-badge">✓ Very Good</div>
+                <div style="font-size:9px;color:#94a3b8;margin-top:6px;">Updated today</div>
+              </div>
+            </div>
+            <div class="credit-bar"><div class="credit-fill"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:5px;">
+              <span style="font-size:8px;color:#94a3b8;">300</span>
+              <span style="font-size:8px;color:#94a3b8;">850</span>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="quick-actions">
+            <div class="qa-item">
+              <div class="qa-icon" style="background:#003087;">💸</div>
+              <span class="qa-label">Transfer</span>
+            </div>
+            <div class="qa-item">
+              <div class="qa-icon" style="background:#0066cc;">📱</div>
+              <span class="qa-label">Pay</span>
+            </div>
+            <div class="qa-item">
+              <div class="qa-icon" style="background:#0055aa;">🏧</div>
+              <span class="qa-label">Deposit</span>
+            </div>
+            <div class="qa-item">
+              <div class="qa-icon" style="background:#004499;">⚙️</div>
+              <span class="qa-label">More</span>
+            </div>
+          </div>
+
+          <!-- Financial Insight Banner -->
+          <div class="insights-bar">
+            <span class="insights-bar-icon">💡</span>
+            <div class="insights-bar-text">
+              <div class="insights-bar-title">Financial Insight</div>
+              <div class="insights-bar-sub">You spent 12% less this month</div>
+            </div>
+            <span style="color:rgba(255,255,255,0.5);font-size:12px;">›</span>
+          </div>
+
+          <!-- Transactions -->
+          <div class="app-section-label">Recent Transactions</div>
+          <div class="transaction">
+            <div class="tx-icon" style="background:#fef3c7;">🛒</div>
+            <div class="tx-info">
+              <div class="tx-name">Whole Foods Market</div>
+              <div class="tx-date">Today · 2:34 PM</div>
+            </div>
+            <span class="tx-amount tx-neg">-$67.42</span>
+          </div>
+          <div class="transaction">
+            <div class="tx-icon" style="background:#dcfce7;">💰</div>
+            <div class="tx-info">
+              <div class="tx-name">Direct Deposit</div>
+              <div class="tx-date">Yesterday · 8:00 AM</div>
+            </div>
+            <span class="tx-amount tx-pos">+$3,200.00</span>
+          </div>
+          <div class="transaction">
+            <div class="tx-icon" style="background:#fee2e2;">⛽</div>
+            <div class="tx-info">
+              <div class="tx-name">Shell Gas Station</div>
+              <div class="tx-date">Jul 10 · 6:15 PM</div>
+            </div>
+            <span class="tx-amount tx-neg">-$54.20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE BG BANNER -->
+  <div class="code-bg-section reveal">
+    <img class="code-bg-img" src="code-laptop.jpg" alt="Android development"/>
+    <div class="code-bg-content">
+      <h2>Built on Kotlin.<br/>Designed for scale.</h2>
+      <p>Multi-module MVVM + Clean Architecture, lifecycle-aware components, secure API communication, build variant environments, and a 20-person cross-functional Agile team. That's the environment I operated in every day.</p>
+    </div>
+  </div>
+
+  <!-- TABBED EXPERIENCE -->
+  <div class="section">
+    <div class="section-divider reveal"><h2>Full Experience</h2></div>
+
+    <div class="exp-tabs reveal" data-tabs>
+      <button data-tab="nfcu" class="active">Navy Federal CU</button>
+      <button data-tab="tc">Tech Consulting</button>
+      <button data-tab="research">MSUM Research</button>
+      <button data-tab="it">IT Support</button>
+    </div>
+
+    <div>
+      <div data-panel="nfcu" class="active reveal">
+        <div class="exp-role">Senior Android Developer (Digital Engineer II) <span>@ Navy Federal Credit Union</span></div>
+        <div class="exp-meta">Jan 2024 – Mar 2026 &nbsp;·&nbsp; Laurel, MD &nbsp;·&nbsp; Team Overlord</div>
+        <ul class="exp-bullets">
+          <li>Built production Android features in Kotlin and Java within a multi-module MVVM + Clean Architecture codebase serving hundreds of thousands of credit union members.</li>
+          <li>Owned the Account Summary experience end-to-end: Credit Score, configurable transaction history, and Financial Insights integration improving member account visibility.</li>
+          <li>Designed and shipped Charged-Off Account experiences across Account Summary, Account Details, E-Messages, and Financial Insights — ensuring consistency across all modules.</li>
+          <li>Built WireMock Cloud mock API infrastructure using developer build variants — enabling uninterrupted feature development and QA testing during backend integration outages.</li>
+          <li>Implemented AEM content rendering via an internally maintained Node.js decoding service after a platform migration to updated Adobe Experience Manager content structures.</li>
+          <li>Applied OOP principles and Kotlin features — suspend functions, sealed classes, extension functions, open/abstract classes — alongside custom utility classes tailored to specific feature requirements.</li>
+          <li>Designed lifecycle-aware ViewModels using LiveData, StateFlow, SharedFlow, and Kotlin Coroutines to manage complex UI state while preventing memory leaks during lifecycle changes.</li>
+          <li>Developed highly reusable RecyclerView adapters with DiffUtil, ListAdapter, multiple view types, pagination, and expandable sections for optimized rendering.</li>
+          <li>Configured Gradle Build Variants and Product Flavors to support dev/QA/staging/production environments with environment-specific configuration and mock services.</li>
+          <li>Debugged production issues using Android Studio Profiler, Layout Inspector, App Inspection, Database Inspector, Network Inspector, Logcat, and ADB.</li>
+          <li>Collaborated daily with Product Owners, UX Designers, Backend Engineers, QA, Business/Data Analysts, and Scrum Masters across sprint planning, story grooming, and architecture discussions.</li>
+        </ul>
+        <div class="projects-showcase">
+          <div class="ps-label">Selected Projects & Impact</div>
+          <div class="ps-tags">
+            <span class="ps-tag">Credit Score Integration</span>
+            <span class="ps-tag">Charged-Off Account Experience</span>
+            <span class="ps-tag">Financial Insights</span>
+            <span class="ps-tag">Personalized Offers</span>
+            <span class="ps-tag">AEM Platform Migration</span>
+            <span class="ps-tag">WireMock Mock Infrastructure</span>
+          </div>
+        </div>
+      </div>
+
+      <div data-panel="tc" class="reveal">
+        <div class="exp-role">Android Developer II <span>@ Tech Consulting</span></div>
+        <div class="exp-meta">Sep 2023 – Aug 2024 &nbsp;·&nbsp; Android Development</div>
+        <ul class="exp-bullets">
+          <li>Designed and maintained Android applications in Kotlin and Java following MVVM architecture and Android Architecture Components.</li>
+          <li>Developed multiple production screens — account summary, detail pages, calendar-based interfaces — using Fragments, RecyclerView, ListView, ConstraintLayout, and Material Design.</li>
+          <li>Built networking layers using Retrofit, OkHttp, and RESTful APIs with JSON parsing (Gson/Moshi) and repository pattern for data abstraction.</li>
+          <li>Integrated Camera APIs, Google Maps, Location Services, and media playback for location-aware application features.</li>
+          <li>Implemented local persistence using Room Database, SQLite, and SharedPreferences; integrated Firebase (Analytics, Crashlytics, Authentication, Cloud Messaging).</li>
+          <li>Built reusable RecyclerView adapters with DiffUtil and multiple view types; used ViewPager2 and Navigation Component for multi-screen navigation.</li>
+          <li>Utilized Git workflows, pull requests, Azure DevOps, Jira, and Agile Scrum throughout the SDLC.</li>
+        </ul>
+      </div>
+
+      <div data-panel="research" class="reveal">
+        <div class="exp-role">Research Assistant — High-Performance Computing <span>@ Minnesota State University Moorhead</span></div>
+        <div class="exp-meta">Jan 2022 – May 2023 &nbsp;·&nbsp; Moorhead, MN &nbsp;·&nbsp; Alongside Faculty Researchers</div>
+        <ul class="exp-bullets">
+          <li>Conducted computational research alongside faculty researchers using MPI (Message Passing Interface) and Python for distributed and parallel computing.</li>
+          <li>Implemented matrix operations, linear algebra computations, and network graph algorithms in Python to model and analyze large biological datasets across distributed nodes.</li>
+          <li>Developed parallel algorithms to improve computational efficiency across multi-core and clustered computing environments.</li>
+          <li>Performed statistical analysis and experimental validation, collaborating with the faculty research team and documenting all findings rigorously.</li>
+          <li>Built algorithmic and performance-optimization foundations that directly translated into scalable Android application development.</li>
+        </ul>
+      </div>
+
+      <div data-panel="it" class="reveal">
+        <div class="exp-role">IT Support Technician <span>@ Family Healthcare</span></div>
+        <div class="exp-meta">May 2022 – Aug 2022 &nbsp;·&nbsp; Healthcare Environment</div>
+        <ul class="exp-bullets">
+          <li>Provided Tier 1/Tier 2 technical support for clinical and administrative staff across multiple departments.</li>
+          <li>Installed, configured, and maintained desktop hardware, workstations, and peripheral devices; troubleshot Windows OS, Active Directory, and networking issues.</li>
+          <li>Managed workstation imaging, software deployment, system backups, and IT asset records.</li>
+          <li>Gained exposure to healthcare IT operations and clinical environment protocols.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="owl-mark">🦉</span>
+    Designed & built by <span>Peter Tiewah</span> · Laurel, Maryland · © 2026
+    <span class="owl-mark">🦉</span>
+  </footer>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

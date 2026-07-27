@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Education | Peter Tiewah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .edu-grid{display:grid;grid-template-columns:1fr;gap:32px;max-width:860px;}
+
+    /* BIG EDU CARD */
+    .edu-big{
+      background:var(--navy-card);border:1px solid rgba(46,117,182,0.25);
+      border-radius:16px;overflow:hidden;
+    }
+    .edu-big-header{
+      padding:32px 36px;
+      border-bottom:1px solid rgba(46,117,182,0.15);
+      position:relative;overflow:hidden;
+    }
+    .edu-big-header.iwu{background:linear-gradient(135deg,#6b0f0f,#8B1A1A,#1a1a3e);}
+    .edu-big-header.msum{background:linear-gradient(135deg,#0a2240,var(--navy-mid));}
+    .edu-big-header::before{
+      content:'';position:absolute;right:-80px;top:-80px;
+      width:280px;height:280px;
+      background:radial-gradient(circle,rgba(255,255,255,0.06),transparent 70%);
+    }
+    .edu-school-logo{
+      font-family:var(--mono);font-size:32px;font-weight:700;
+      color:rgba(255,255,255,0.15);position:absolute;
+      right:32px;bottom:24px;letter-spacing:-2px;
+    }
+    .edu-badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+    .edu-status{
+      font-family:var(--mono);font-size:11px;
+      border-radius:20px;padding:3px 12px;
+    }
+    .status-inprogress{background:rgba(244,196,48,0.15);color:var(--gold);border:1px solid rgba(244,196,48,0.3);}
+    .status-complete{background:rgba(76,175,80,0.15);color:#4caf50;border:1px solid rgba(76,175,80,0.3);}
+    .status-stem{background:rgba(100,255,218,0.1);color:var(--cyan);border:1px solid rgba(100,255,218,0.2);}
+    .edu-degree{
+      font-size:clamp(18px,3vw,26px);font-weight:700;
+      color:white;margin-bottom:6px;line-height:1.2;
+    }
+    .edu-school{font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:4px;}
+    .edu-dates{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.5);}
+
+    /* COURSE GRID */
+    .edu-big-body{padding:28px 36px;}
+    .courses-header{
+      font-family:var(--mono);font-size:11px;color:var(--cyan);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;
+    }
+    .courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:24px;}
+    .course-card{
+      background:rgba(46,117,182,0.08);
+      border:1px solid rgba(46,117,182,0.15);
+      border-radius:8px;padding:14px 16px;
+      transition:var(--t);
+    }
+    .course-card:hover{border-color:rgba(100,255,218,0.25);background:rgba(100,255,218,0.05);}
+    .course-card.active-course{
+      border-color:rgba(100,255,218,0.3);
+      background:rgba(100,255,218,0.06);
+    }
+    .cc-code{
+      font-family:var(--mono);font-size:11px;
+      margin-bottom:4px;
+    }
+    .cc-code.active{color:var(--cyan);}
+    .cc-code.upcoming{color:var(--gray);}
+    .cc-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px;}
+    .cc-desc{font-size:11px;color:var(--gray);line-height:1.5;}
+    .cc-status{
+      display:flex;align-items:center;gap:6px;
+      font-size:10px;margin-top:6px;
+    }
+    .cc-dot{width:6px;height:6px;border-radius:50%;}
+    .cc-dot.live{background:#4caf50;}
+    .cc-dot.soon{background:var(--blue-bright);}
+
+    /* MSUM COURSES */
+    .msum-courses{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+    .msum-course{
+      background:rgba(46,117,182,0.06);
+      border:1px solid rgba(46,117,182,0.12);
+      border-radius:6px;padding:10px 12px;
+      font-size:12px;color:var(--gray-light);
+      transition:var(--t);
+    }
+    .msum-course:hover{color:var(--white);border-color:rgba(46,117,182,0.3);}
+
+    /* CERT CARD */
+    .cert-card{
+      background:var(--navy-card);border:1px solid rgba(46,117,182,0.2);
+      border-radius:12px;padding:24px 28px;
+      display:flex;align-items:center;gap:20px;
+    }
+    .cert-icon{
+      font-size:40px;flex-shrink:0;
+      filter:drop-shadow(0 4px 8px rgba(100,255,218,0.2));
+    }
+    .cert-text h3{font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px;}
+    .cert-text p{font-size:13px;color:var(--gray-light);}
+
+    @media(max-width:960px){
+      .courses-grid{grid-template-columns:1fr;}
+      .msum-courses{grid-template-columns:1fr 1fr;}
+      .edu-big-header{padding:24px;}
+      .edu-big-body{padding:20px 24px;}
+    }
+    @media(max-width:600px){
+      .msum-courses{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-sub">Android · AI · Lagos</div>
+  <nav class="sidebar-nav">
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="education.html" class="active"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="portfolio.html"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('waterfall.jpg');"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Education</p>
+      <h1 class="page-title">Always <span>Learning</span></h1>
+      <p class="page-desc">From Computer Science at MSUM to Artificial Intelligence at IWU — a continuous journey of building depth, not just breadth.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="edu-grid">
+
+      <!-- IWU -->
+      <div class="edu-big reveal">
+        <div class="edu-big-header iwu">
+          <div class="edu-school-logo">IWU</div>
+          <div class="edu-badge-row">
+            <span class="edu-status status-inprogress">⏳ In Progress</span>
+            <span class="edu-status status-stem">STEM Designated</span>
+            <span class="edu-status" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.1);">30 Credits · 10 Courses</span>
+          </div>
+          <div class="edu-degree">M.S. in Artificial Intelligence<br/>— Data Analytics Specialization</div>
+          <div class="edu-school">Indiana Wesleyan University</div>
+          <div class="edu-dates">2026 — Present &nbsp;·&nbsp; Online</div>
+        </div>
+        <div class="edu-big-body">
+          <p style="color:var(--gray-light);font-size:14px;line-height:1.8;margin-bottom:24px;">
+            A STEM-designated, applied M.S. program covering generative AI fundamentals, machine learning, natural language processing, data visualization analytics, and intelligent automation — designed for working professionals driving digital transformation. Taught by faculty including former US Department of Defense AI policy leaders and AI-powered business consulting experts.
+          </p>
+
+          <div class="courses-header">🟢 Currently Enrolled</div>
+          <div class="courses-grid">
+            <div class="course-card active-course">
+              <div class="cc-code active">AIML-500</div>
+              <div class="cc-name">Machine Learning Fundamentals</div>
+              <div class="cc-desc">Core ML concepts, supervised/unsupervised learning, model training, evaluation, and real-world application.</div>
+              <div class="cc-status"><span class="cc-dot live"></span><span style="color:#4caf50;font-size:10px;">Enrolled now</span></div>
+            </div>
+            <div class="course-card active-course">
+              <div class="cc-code active">DTAN-500</div>
+              <div class="cc-name">Foundations of Data Analytics</div>
+              <div class="cc-desc">Data analysis fundamentals, statistical thinking, visualization, and business data-driven decision-making.</div>
+              <div class="cc-status"><span class="cc-dot live"></span><span style="color:#4caf50;font-size:10px;">Enrolled now</span></div>
+            </div>
+          </div>
+
+          <div class="courses-header" style="margin-top:20px;">⏳ Upcoming Courses</div>
+          <div class="courses-grid">
+            <div class="course-card">
+              <div class="cc-code upcoming">AIML-501</div>
+              <div class="cc-name">Applied Artificial Intelligence</div>
+              <div class="cc-desc">Practical application of AI tools and systems to real-world business problems and automation workflows.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">AIML-505</div>
+              <div class="cc-name">Natural Language Processing</div>
+              <div class="cc-desc">Text analysis, language models, NLP pipelines, and generative AI for language understanding and generation.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">AIML-510</div>
+              <div class="cc-name">Intelligent Automation</div>
+              <div class="cc-desc">AI-powered process automation, robotic process automation, and intelligent system integration in business operations.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">AIML-515</div>
+              <div class="cc-name">AI Ethics & Governance</div>
+              <div class="cc-desc">Responsible AI frameworks, biblical principles for ethical technology, bias mitigation, and governance strategy.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">DTAN-505</div>
+              <div class="cc-name">Data Visualization Analytics</div>
+              <div class="cc-desc">Transform complex datasets into meaningful, actionable visualizations for decision-makers across industries.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">DTAN-515</div>
+              <div class="cc-name">Statistics for Data Analytics</div>
+              <div class="cc-desc">Quantitative foundation for rigorous data analysis: probability, inference, regression, and experimental design.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">DTAN-520</div>
+              <div class="cc-name">Predictive Analytics</div>
+              <div class="cc-desc">Forecasting, predictive modeling, trend analysis, and risk assessment using advanced analytics tools.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+            <div class="course-card">
+              <div class="cc-code upcoming">DTAN-525</div>
+              <div class="cc-name">Big Data & AI Integration</div>
+              <div class="cc-desc">Integrating AI-based systems, data engineering fundamentals, and intelligent automation into business operations at scale.</div>
+              <div class="cc-status"><span class="cc-dot soon"></span><span style="color:var(--blue-bright);font-size:10px;">Upcoming</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MSUM -->
+      <div class="edu-big reveal">
+        <div class="edu-big-header msum">
+          <div class="edu-school-logo">MSUM</div>
+          <div class="edu-badge-row">
+            <span class="edu-status status-complete">✓ Completed</span>
+          </div>
+          <div class="edu-degree">B.S., Computer Science</div>
+          <div class="edu-school">Minnesota State University, Moorhead</div>
+          <div class="edu-dates">Aug 2017 — Dec 2021 &nbsp;·&nbsp; Moorhead, MN</div>
+        </div>
+        <div class="edu-big-body">
+          <p style="color:var(--gray-light);font-size:14px;line-height:1.8;margin-bottom:24px;">
+            A comprehensive Computer Science degree covering algorithms, data structures, systems programming, software engineering, and computational research. Included over a year of HPC research alongside faculty, and production experience in multiple languages including Java, Python, and C/C++.
+          </p>
+
+          <div class="courses-header">Core CS Coursework</div>
+          <div class="msum-courses">
+            <div class="msum-course">Data Structures & Algorithms</div>
+            <div class="msum-course">Operating Systems</div>
+            <div class="msum-course">Computer Architecture</div>
+            <div class="msum-course">Database Systems</div>
+            <div class="msum-course">Software Engineering</div>
+            <div class="msum-course">Discrete Mathematics</div>
+            <div class="msum-course">Linear Algebra</div>
+            <div class="msum-course">Calculus I & II</div>
+            <div class="msum-course">Computer Networks</div>
+            <div class="msum-course">Programming Languages</div>
+            <div class="msum-course">Theory of Computation</div>
+            <div class="msum-course">Systems Programming (C/C++)</div>
+            <div class="msum-course">Object-Oriented Design (Java)</div>
+            <div class="msum-course">Web Technologies</div>
+            <div class="msum-course">Human-Computer Interaction</div>
+            <div class="msum-course">Parallel & Distributed Computing</div>
+            <div class="msum-course">Statistics & Probability</div>
+            <div class="msum-course">Technical Writing for CS</div>
+          </div>
+
+          <div class="courses-header" style="margin-top:24px;">Research Highlight</div>
+          <div class="card card-accent" style="padding:20px;margin-top:0;">
+            <div style="font-size:14px;color:var(--white);font-weight:600;margin-bottom:8px;">
+              Research Assistant — High-Performance Computing Lab
+            </div>
+            <p style="font-size:13px;color:var(--gray-light);line-height:1.7;">
+              Conducted computational research <strong style="color:var(--white);">alongside faculty researchers</strong> using MPI and Python for distributed and parallel computing. Worked with matrix operations, linear algebra, network graph algorithms, and large biological dataset analysis across distributed nodes. Built the performance-optimization foundations later applied to scalable Android development.
+            </p>
+            <div class="pills" style="margin-top:12px;">
+              <span class="pill highlight">MPI</span><span class="pill">Python</span>
+              <span class="pill">Parallel Algorithms</span><span class="pill">Matrix Operations</span>
+              <span class="pill">Network Graph Theory</span><span class="pill">Distributed Systems</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATE -->
+      <div class="cert-card reveal">
+        <div class="cert-icon">📜</div>
+        <div class="cert-text">
+          <h3>Certificate — Data Structures & Algorithms using Java</h3>
+          <p>Minnesota State University, Moorhead &nbsp;·&nbsp; Aug 2020 – Oct 2020</p>
+          <div class="pills" style="margin-top:10px;">
+            <span class="pill">Java</span><span class="pill">Sorting Algorithms</span>
+            <span class="pill">Trees & Graphs</span><span class="pill">Dynamic Programming</span>
+            <span class="pill">Time & Space Complexity</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="owl-mark">🦉</span>
+    Designed & built by <span>Peter Tiewah</span> · Laurel, Maryland · © 2026
+    <span class="owl-mark">🦉</span>
+  </footer>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

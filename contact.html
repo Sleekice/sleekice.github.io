@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Contact | Peter Tiewah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    .contact-hero{
+      position:relative;overflow:hidden;
+      min-height:60vh;display:flex;align-items:center;
+    }
+    .contact-hero-bg{
+      position:absolute;inset:0;
+      background:url('owl-bw.jpg') center 30%/cover no-repeat;
+      filter:brightness(0.25) saturate(0.3);
+    }
+    .contact-hero-content{
+      position:relative;z-index:1;
+      padding:80px 80px;
+      max-width:700px;
+    }
+    .contact-hero-content h1{
+      font-size:clamp(42px,7vw,80px);font-weight:700;
+      color:var(--white);letter-spacing:-3px;margin-bottom:16px;
+      line-height:1;
+    }
+    .contact-hero-content h1 span{color:var(--cyan);}
+    .contact-hero-content p{font-size:17px;color:var(--gray-light);line-height:1.8;max-width:500px;}
+
+    .contact-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:48px;align-items:start;
+    }
+    .contact-card{
+      background:var(--navy-card);border:1px solid rgba(46,117,182,0.2);
+      border-radius:14px;padding:32px;
+      transition:var(--t);display:flex;
+      align-items:flex-start;gap:16px;margin-bottom:16px;
+    }
+    .contact-card:hover{
+      border-color:rgba(100,255,218,0.3);
+      transform:translateX(6px);
+    }
+    .contact-card-icon{
+      width:44px;height:44px;border-radius:10px;
+      background:rgba(46,117,182,0.15);
+      border:1px solid rgba(46,117,182,0.25);
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;color:var(--cyan);flex-shrink:0;
+    }
+    .contact-card-text h3{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px;}
+    .contact-card-text a,.contact-card-text span{font-size:14px;color:var(--gray-light);}
+    .contact-card-text a:hover{color:var(--cyan);}
+
+    .availability-card{
+      background:linear-gradient(135deg,rgba(100,255,218,0.08),rgba(46,117,182,0.1));
+      border:1px solid rgba(100,255,218,0.2);
+      border-radius:14px;padding:32px;margin-bottom:20px;
+    }
+    .av-title{font-size:18px;font-weight:600;color:var(--white);margin-bottom:12px;}
+    .av-status{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(76,175,80,0.12);border:1px solid rgba(76,175,80,0.3);
+      border-radius:20px;padding:6px 16px;
+      font-family:var(--mono);font-size:13px;color:#4caf50;
+      margin-bottom:16px;
+    }
+    .av-desc{font-size:14px;color:var(--gray-light);line-height:1.8;}
+    .av-roles{margin-top:16px;}
+    .av-role{
+      display:flex;align-items:center;gap:10px;
+      padding:8px 0;border-bottom:1px solid rgba(46,117,182,0.1);
+      font-size:13px;color:var(--gray-light);
+    }
+    .av-role:last-child{border:none;}
+    .av-role i{color:var(--cyan);font-size:11px;}
+
+    .owl-contact{
+      position:relative;overflow:hidden;border-radius:14px;
+      height:280px;border:1px solid rgba(46,117,182,0.15);
+    }
+    .owl-contact img{
+      width:100%;height:100%;object-fit:cover;
+      filter:brightness(0.6) saturate(0.7);
+    }
+    .owl-contact-text{
+      position:absolute;inset:0;display:flex;
+      flex-direction:column;justify-content:flex-end;
+      padding:24px;
+    }
+    .owl-contact-text p{
+      font-family:var(--mono);font-size:12px;
+      color:rgba(255,255,255,0.7);letter-spacing:1.5px;
+    }
+
+    @media(max-width:960px){
+      .contact-hero-content{padding:80px 24px 40px;}
+      .contact-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-sub">Android · AI · Lagos</div>
+  <nav class="sidebar-nav">
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="portfolio.html"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+<main class="main">
+  <div class="contact-hero">
+    <div class="contact-hero-bg"></div>
+    <div class="contact-hero-content">
+      <p class="page-eyebrow">Get In Touch</p>
+      <h1>Let's<br/><span>Build</span><br/>Something.</h1>
+      <p>I'm open to Senior Android Developer roles, interesting engineering opportunities, and connections with people who love building great software.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="contact-grid">
+      <div>
+        <div class="availability-card reveal">
+          <div class="av-title">Current Availability</div>
+          <div class="av-status"><span class="dot"></span>Open to Opportunities</div>
+          <div class="av-desc">Based in Laurel, Maryland. Open to remote, hybrid, or on-site roles in the DC/Maryland/Virginia area and nationwide remote opportunities.</div>
+          <div class="av-roles">
+            <div class="av-role"><i class="fas fa-check"></i> Senior Android Developer</div>
+            <div class="av-role"><i class="fas fa-check"></i> Lead Android Developer</div>
+            <div class="av-role"><i class="fas fa-check"></i> Mobile Engineering Lead</div>
+            <div class="av-role"><i class="fas fa-check"></i> Android Architect</div>
+            <div class="av-role"><i class="fas fa-check"></i> AI-Powered Mobile Engineering</div>
+          </div>
+        </div>
+
+        <a href="mailto:cephasme@gmail.com" class="contact-card reveal">
+          <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-card-text">
+            <h3>Email</h3>
+            <a href="mailto:cephasme@gmail.com">cephasme@gmail.com</a>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com/in/ptiewah" target="_blank" class="contact-card reveal">
+          <div class="contact-card-icon"><i class="fab fa-linkedin"></i></div>
+          <div class="contact-card-text">
+            <h3>LinkedIn</h3>
+            <a href="https://linkedin.com/in/ptiewah" target="_blank">linkedin.com/in/ptiewah</a>
+          </div>
+        </a>
+
+        <a href="https://github.com/Sleekice" target="_blank" class="contact-card reveal">
+          <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+          <div class="contact-card-text">
+            <h3>GitHub</h3>
+            <a href="https://github.com/Sleekice" target="_blank">github.com/Sleekice</a>
+          </div>
+        </a>
+
+        <div class="contact-card reveal">
+          <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="contact-card-text">
+            <h3>Location</h3>
+            <span>Laurel, Maryland, USA 🇺🇸</span>
+          </div>
+        </div>
+
+        <div class="contact-card reveal">
+          <div class="contact-card-icon"><i class="fas fa-download"></i></div>
+          <div class="contact-card-text">
+            <h3>Resume</h3>
+            <a href="Peter_Tiewah_Resume.pdf" download>Download PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="owl-contact reveal">
+          <img src="owl-dark.jpg" alt="Owl — watchful, precise"/>
+          <div class="owl-contact-text">
+            <p>🦉 Watchful · Precise · Ready to strike</p>
+          </div>
+        </div>
+
+        <div class="card reveal" style="margin-top:20px;padding:28px;">
+          <div class="section-label" style="margin-bottom:12px;">Response Time</div>
+          <p style="font-size:14px;color:var(--gray-light);line-height:1.8;">
+            I typically respond within <strong style="color:var(--white);">24–48 hours</strong>. For urgent opportunities, email is the fastest way to reach me.
+          </p>
+          <div style="margin-top:20px;">
+            <a href="mailto:cephasme@gmail.com" class="btn btn-outline" style="width:100%;justify-content:center;">
+              <i class="fas fa-paper-plane"></i> Send Me a Message
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="owl-mark">🦉</span>
+    Designed & built by <span>Peter Tiewah</span> · Laurel, Maryland · © 2026
+    <span class="owl-mark">🦉</span>
+  </footer>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

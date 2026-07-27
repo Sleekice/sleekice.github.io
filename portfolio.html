@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Portfolio | Peter Tiewah | IWU MSAI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --navy:#0d1b2a; --navy-mid:#112240; --navy-card:#1a2f4a;
+      --blue:#2E75B6; --blue-bright:#4a9fd4; --cyan:#64ffda;
+      --white:#e6f1ff; --gray:#8892a4; --gray-light:#a8b2c1;
+      --iwu-red:#8B1A1A; --iwu-red-light:#a52020;
+      --mono:'JetBrains Mono',monospace; --sans:'Space Grotesk',sans-serif;
+      --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--navy);color:var(--white);font-family:var(--sans);overflow-x:hidden;}
+    a{color:var(--cyan);text-decoration:none;transition:var(--transition);}
+    a:hover{color:var(--blue-bright);}
+    ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:var(--navy);} ::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+
+    /* SIDEBAR */
+    .sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;background:var(--navy-mid);border-right:1px solid rgba(46,117,182,0.2);display:flex;flex-direction:column;padding:40px 30px;z-index:100;}
+    .sidebar-logo{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--cyan);margin-bottom:8px;}
+    .sidebar-title{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:2px;margin-bottom:40px;}
+    .sidebar-nav{flex:1;}
+    .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;margin-bottom:4px;border-radius:6px;color:var(--gray-light);font-size:14px;font-weight:500;transition:var(--transition);border-left:2px solid transparent;}
+    .sidebar-nav a:hover,.sidebar-nav a.active{color:var(--cyan);background:rgba(100,255,218,0.05);border-left-color:var(--cyan);}
+    .sidebar-nav a i{width:16px;text-align:center;font-size:13px;}
+    .sidebar-status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray);margin-bottom:24px;padding:10px 12px;background:rgba(100,255,218,0.05);border-radius:6px;border:1px solid rgba(100,255,218,0.1);}
+    .status-dot{width:8px;height:8px;background:#4caf50;border-radius:50%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+    .sidebar-socials{display:flex;gap:16px;}
+    .sidebar-socials a{color:var(--gray);font-size:16px;transition:var(--transition);}
+    .sidebar-socials a:hover{color:var(--cyan);transform:translateY(-2px);}
+
+    /* MAIN */
+    .main{margin-left:260px;padding:0;}
+
+    /* IWU HERO BANNER */
+    .iwu-banner{
+      background: linear-gradient(135deg, #6b0f0f 0%, #8B1A1A 40%, #1a1a3e 100%);
+      padding: 60px 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid rgba(139,26,26,0.5);
+    }
+    .iwu-banner::before{
+      content:'';position:absolute;top:-100px;right:-100px;
+      width:500px;height:500px;
+      background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%);
+    }
+    .iwu-banner-inner{display:flex;align-items:center;gap:40px;position:relative;z-index:1;}
+    .iwu-logo-wrap{
+      background:white;
+      border-radius:10px;
+      padding:16px 24px;
+      display:flex;align-items:center;justify-content:center;
+      flex-shrink:0;
+      box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    }
+    .iwu-logo-wrap img{height:52px;width:auto;}
+    .iwu-logo-text{
+      /* Fallback if image fails */
+      font-family:var(--sans);font-size:28px;font-weight:700;
+      color:#8B1A1A;letter-spacing:-1px;display:none;
+    }
+    .iwu-banner-text h1{
+      font-size:clamp(22px,3vw,32px);font-weight:700;
+      color:white;margin-bottom:6px;letter-spacing:-0.5px;
+    }
+    .iwu-banner-text p{
+      font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:4px;
+    }
+    .iwu-banner-text .program-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      margin-top:12px;
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.2);
+      border-radius:20px;padding:6px 16px;
+      font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.85);
+    }
+
+    /* CONTENT AREA */
+    .content{padding:60px 80px;max-width:960px;}
+
+    /* BIO SECTION */
+    .bio-card{
+      background:var(--navy-card);
+      border:1px solid rgba(46,117,182,0.2);
+      border-radius:12px;padding:36px;
+      margin-bottom:32px;
+      position:relative;overflow:hidden;
+    }
+    .bio-card::before{
+      content:'';position:absolute;left:0;top:0;bottom:0;
+      width:4px;background:var(--iwu-red);
+    }
+    .bio-card h2{
+      font-size:20px;font-weight:600;color:var(--white);
+      margin-bottom:16px;display:flex;align-items:center;gap:10px;
+    }
+    .bio-card h2 i{color:var(--iwu-red);font-size:18px;}
+    .bio-card p{
+      font-size:15px;color:var(--gray-light);line-height:1.85;margin-bottom:14px;
+    }
+    .bio-card p:last-child{margin-bottom:0;}
+    .bio-card p strong{color:var(--white);}
+
+    /* VALUE PROPOSITION */
+    .value-card{
+      background:linear-gradient(135deg,rgba(139,26,26,0.15),rgba(46,117,182,0.1));
+      border:1px solid rgba(139,26,26,0.3);
+      border-radius:12px;padding:36px;
+      margin-bottom:48px;
+    }
+    .value-card h2{
+      font-size:20px;font-weight:600;color:var(--white);
+      margin-bottom:8px;display:flex;align-items:center;gap:10px;
+    }
+    .value-card h2 i{color:var(--cyan);}
+    .value-subtitle{
+      font-family:var(--mono);font-size:12px;color:var(--gray);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;
+    }
+    .value-statement{
+      font-size:18px;font-weight:500;color:var(--white);
+      line-height:1.7;margin-bottom:20px;
+      border-left:3px solid var(--cyan);
+      padding-left:20px;
+    }
+    .value-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+    .value-pillar{
+      background:rgba(46,117,182,0.1);border:1px solid rgba(46,117,182,0.2);
+      border-radius:8px;padding:16px;text-align:center;
+    }
+    .value-pillar-icon{font-size:24px;margin-bottom:8px;}
+    .value-pillar-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;}
+    .value-pillar-desc{font-size:12px;color:var(--gray-light);line-height:1.5;}
+
+    /* SECTION DIVIDER */
+    .section-divider{
+      display:flex;align-items:center;gap:16px;margin-bottom:32px;margin-top:56px;
+    }
+    .section-divider h2{
+      font-size:22px;font-weight:700;color:var(--white);white-space:nowrap;
+      display:flex;align-items:center;gap:10px;
+    }
+    .section-divider h2 i{color:var(--iwu-red);font-size:18px;}
+    .section-divider::after{content:'';flex:1;height:1px;background:rgba(46,117,182,0.25);}
+
+    /* ARTIFACT CARD */
+    .artifact-card{
+      background:var(--navy-card);
+      border:1px solid rgba(46,117,182,0.2);
+      border-radius:12px;
+      margin-bottom:28px;
+      overflow:hidden;
+      transition:var(--transition);
+    }
+    .artifact-card:hover{border-color:rgba(100,255,218,0.25);}
+
+    .artifact-header{
+      padding:28px 32px;
+      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+      cursor:pointer;
+      border-bottom:1px solid rgba(46,117,182,0.1);
+    }
+    .artifact-header:hover{background:rgba(46,117,182,0.05);}
+    .artifact-num{
+      font-family:var(--mono);font-size:11px;color:var(--iwu-red);
+      background:rgba(139,26,26,0.12);border:1px solid rgba(139,26,26,0.25);
+      border-radius:20px;padding:3px 12px;white-space:nowrap;margin-bottom:8px;
+      display:inline-block;
+    }
+    .artifact-title{font-size:18px;font-weight:600;color:var(--white);}
+    .artifact-course{
+      font-family:var(--mono);font-size:12px;color:var(--gray);margin-top:4px;
+    }
+    .artifact-toggle{
+      color:var(--gray);font-size:16px;transition:var(--transition);flex-shrink:0;
+      margin-top:4px;
+    }
+    .artifact-card.open .artifact-toggle{transform:rotate(180deg);color:var(--cyan);}
+
+    .artifact-body{
+      display:none;padding:32px;
+    }
+    .artifact-card.open .artifact-body{display:block;}
+
+    /* Artifact fields */
+    .artifact-field{margin-bottom:24px;}
+    .artifact-field:last-child{margin-bottom:0;}
+    .field-label{
+      font-family:var(--mono);font-size:11px;color:var(--cyan);
+      letter-spacing:2px;text-transform:uppercase;
+      margin-bottom:8px;display:flex;align-items:center;gap:8px;
+    }
+    .field-label i{font-size:10px;}
+    .field-value{
+      font-size:15px;color:var(--gray-light);line-height:1.8;
+    }
+    .field-value strong{color:var(--white);}
+    .field-value ul{padding-left:20px;margin-top:8px;}
+    .field-value ul li{margin-bottom:6px;position:relative;}
+    .field-value ul li::marker{color:var(--cyan);}
+
+    .tools-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+    .tool-tag{
+      font-family:var(--mono);font-size:11px;
+      color:var(--blue-bright);
+      background:rgba(46,117,182,0.12);
+      border:1px solid rgba(46,117,182,0.25);
+      border-radius:4px;padding:4px 12px;
+    }
+
+    /* PLACEHOLDER CARD */
+    .placeholder-card{
+      background:rgba(46,117,182,0.04);
+      border:2px dashed rgba(46,117,182,0.2);
+      border-radius:12px;padding:36px;
+      text-align:center;margin-bottom:20px;
+    }
+    .placeholder-card i{font-size:36px;color:var(--gray);opacity:0.4;margin-bottom:16px;}
+    .placeholder-card h3{font-size:16px;color:var(--gray);margin-bottom:8px;}
+    .placeholder-card p{font-size:13px;color:var(--gray);opacity:0.7;}
+
+    /* PROGRESS BAR */
+    .progress-wrap{margin-bottom:48px;}
+    .progress-label{
+      display:flex;justify-content:space-between;
+      font-family:var(--mono);font-size:12px;color:var(--gray);
+      margin-bottom:8px;
+    }
+    .progress-bar{
+      height:6px;background:rgba(46,117,182,0.15);border-radius:3px;overflow:hidden;
+    }
+    .progress-fill{
+      height:100%;background:linear-gradient(90deg,var(--iwu-red),var(--blue));
+      border-radius:3px;transition:width 1s ease;
+    }
+
+    /* COURSE LIST */
+    .courses-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;}
+    .course-item{
+      background:rgba(46,117,182,0.08);border:1px solid rgba(46,117,182,0.18);
+      border-radius:8px;padding:14px 16px;
+    }
+    .course-code{font-family:var(--mono);font-size:11px;color:var(--iwu-red);margin-bottom:4px;}
+    .course-name{font-size:13px;color:var(--white);font-weight:500;}
+    .course-status{font-size:11px;color:var(--gray);margin-top:4px;}
+    .course-item.active{border-color:rgba(100,255,218,0.25);background:rgba(100,255,218,0.04);}
+    .course-item.active .course-code{color:var(--cyan);}
+
+    /* FOOTER */
+    footer{
+      text-align:center;padding:32px;
+      border-top:1px solid rgba(46,117,182,0.15);
+      font-family:var(--mono);font-size:12px;color:var(--gray);
+    }
+    footer span{color:var(--cyan);}
+
+    /* MOBILE */
+    .hamburger{display:none;position:fixed;top:16px;left:16px;z-index:200;background:var(--navy-card);border:1px solid rgba(46,117,182,0.3);border-radius:6px;padding:10px 12px;color:var(--cyan);font-size:18px;cursor:pointer;}
+    @media(max-width:900px){
+      .sidebar{transform:translateX(-100%);width:240px;}
+      .sidebar.open{transform:translateX(0);}
+      .main{margin-left:0;}
+      .hamburger{display:block;}
+      .iwu-banner{padding:80px 24px 40px;}
+      .iwu-banner-inner{flex-direction:column;align-items:flex-start;gap:24px;}
+      .content{padding:40px 24px;}
+      .value-pillars{grid-template-columns:1fr;}
+      .courses-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-title">Android Dev · AI Student</div>
+  <nav class="sidebar-nav">
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="portfolio.html" class="active"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="status-dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- IWU BANNER -->
+  <div class="iwu-banner">
+    <div class="iwu-banner-inner">
+      <div class="iwu-logo-wrap">
+        <!-- Official IWU logo via Wikimedia Commons -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Indiana_wesleyan_iwu_logo.png/320px-Indiana_wesleyan_iwu_logo.png"
+          alt="Indiana Wesleyan University"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+        />
+        <span class="iwu-logo-text">IWU</span>
+      </div>
+      <div class="iwu-banner-text">
+        <h1>Academic Portfolio</h1>
+        <p>Peter Tiewah &nbsp;·&nbsp; M.S. in Artificial Intelligence — Data Analytics</p>
+        <p>Indiana Wesleyan University &nbsp;·&nbsp; 2026 – Present</p>
+        <div class="program-badge">
+          <i class="fas fa-certificate"></i>
+          STEM Designated &nbsp;·&nbsp; 30 Credits &nbsp;·&nbsp; 10 Courses
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Portfolio Progress</span>
+        <!-- ✏️ UPDATE: change "2 of 5" as you add more artifacts -->
+        <span>2 of 5 artifacts complete · 1 pending update</span>
+      </div>
+      <div class="progress-bar">
+        <!-- ✏️ UPDATE: change width percentage as you add artifacts (1=20%, 2=40%, 3=60%, 4=80%, 5=100%) -->
+        <div class="progress-fill" style="width:40%"></div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL BIO -->
+    <div class="bio-card">
+      <h2><i class="fas fa-user-circle"></i> Professional Bio</h2>
+      <p>
+        I am <strong>Peter Tiewah</strong>, a Senior Android Developer with over three years of
+        experience building production-grade mobile applications for some of the largest financial
+        institutions in the United States. Most recently, I served as a <strong>Digital Engineer II
+        at Navy Federal Credit Union</strong>, where I built native Android features serving
+        hundreds of thousands of members in a highly regulated banking environment.
+      </p>
+      <p>
+        My technical foundation spans <strong>Kotlin, Java, MVVM, Clean Architecture,
+        multi-module design, and the full Android Jetpack ecosystem</strong>. I have experience
+        working across the entire software development lifecycle — from architecture discussions
+        and API design to debugging, performance profiling, and production support.
+      </p>
+      <p>
+        Prior to my industry career, I conducted <strong>high-performance computing research
+        alongside faculty at Minnesota State University Moorhead</strong>, working with MPI,
+        Python, parallel algorithms, matrix operations, and distributed network computations.
+      </p>
+      <p>
+        I am now pursuing my <strong>Master of Science in Artificial Intelligence with a
+        specialization in Data Analytics at Indiana Wesleyan University</strong> — expanding
+        my capabilities into machine learning, generative AI, data visualization, and
+        intelligent automation. My goal is to sit at the intersection of mobile engineering
+        and data-driven AI systems, building smarter, more capable applications for the future.
+      </p>
+    </div>
+
+    <!-- PERSONAL VALUE PROPOSITION -->
+    <div class="value-card">
+      <h2><i class="fas fa-star"></i> Personal Value Proposition</h2>
+      <div class="value-subtitle">What I uniquely bring to the table</div>
+      <div class="value-statement">
+        I bring the rare combination of <strong>production-grade Android engineering experience</strong>
+        in regulated financial services and an <strong>emerging foundation in AI and data analytics</strong>
+        — enabling me to build smarter, more data-aware mobile systems that turn real-time insights
+        into better user experiences.
+      </div>
+      <div class="value-pillars">
+        <div class="value-pillar">
+          <div class="value-pillar-icon">📱</div>
+          <div class="value-pillar-title">Mobile Expertise</div>
+          <div class="value-pillar-desc">3+ years shipping Android apps at scale in regulated environments</div>
+        </div>
+        <div class="value-pillar">
+          <div class="value-pillar-icon">🤖</div>
+          <div class="value-pillar-title">AI & Data</div>
+          <div class="value-pillar-desc">Actively building ML and data analytics skills at IWU MSAI</div>
+        </div>
+        <div class="value-pillar">
+          <div class="value-pillar-icon">🔬</div>
+          <div class="value-pillar-title">Research Background</div>
+          <div class="value-pillar-desc">HPC research in parallel computing, graph algorithms, and distributed systems</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CURRENT COURSES -->
+    <div class="section-divider">
+      <h2><i class="fas fa-book-open"></i> Program Curriculum</h2>
+    </div>
+    <div class="courses-grid">
+      <div class="course-item active">
+        <div class="course-code">AIML-500</div>
+        <div class="course-name">Machine Learning Fundamentals</div>
+        <div class="course-status">🟢 Currently enrolled</div>
+      </div>
+      <div class="course-item active">
+        <div class="course-code">DTAN-500</div>
+        <div class="course-name">Foundations of Data Analytics</div>
+        <div class="course-status">🟢 Currently enrolled</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">AIML-501</div>
+        <div class="course-name">AI Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">AIML-505</div>
+        <div class="course-name">AI Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">AIML-510</div>
+        <div class="course-name">AI Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">AIML-515</div>
+        <div class="course-name">AI Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">DTAN-505</div>
+        <div class="course-name">Data Analytics Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">DTAN-515</div>
+        <div class="course-name">Data Analytics Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">DTAN-520</div>
+        <div class="course-name">Data Analytics Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+      <div class="course-item">
+        <div class="course-code">DTAN-525</div>
+        <div class="course-name">Data Analytics Course</div>
+        <div class="course-status">⏳ Upcoming</div>
+      </div>
+    </div>
+
+    <!-- ARTIFACTS -->
+    <div class="section-divider">
+      <h2><i class="fas fa-folder-open"></i> Portfolio Artifacts</h2>
+    </div>
+
+    <!-- ARTIFACT 1 - PLACEHOLDER READY TO FILL -->
+    <!-- ✏️ FILL IN: Replace the placeholder text below with your first artifact when your professor assigns it -->
+    <div class="artifact-card open" id="artifact-1">
+      <div class="artifact-header" onclick="toggleArtifact('artifact-1')">
+        <div>
+          <div class="artifact-num">Artifact 01</div>
+          <div class="artifact-title">Portfolio Introduction & Professional Identity</div>
+          <div class="artifact-course">AIML-500 · Machine Learning Fundamentals &nbsp;·&nbsp; NSO-090 · New Student Orientation</div>
+        </div>
+        <i class="fas fa-chevron-down artifact-toggle"></i>
+      </div>
+      <div class="artifact-body">
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-tag"></i> Title</div>
+          <div class="field-value">Portfolio Introduction & Professional Identity Statement</div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-info-circle"></i> Introduction</div>
+          <div class="field-value">
+            This artifact represents the foundation of my academic portfolio at Indiana Wesleyan University.
+            It captures who I am as a professional, where I am in my journey, and the unique value I bring
+            to the field of AI and data analytics as a practicing Senior Android Developer.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-file-alt"></i> Description</div>
+          <div class="field-value">
+            A professional bio and personal value proposition developed during the New Student Orientation
+            and introductory coursework. This artifact establishes my professional identity as an
+            Android Developer transitioning into AI and data analytics leadership.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-bullseye"></i> Objective</div>
+          <div class="field-value">
+            To clearly articulate my professional background, current learning goals, and the unique
+            perspective I bring as a mobile engineering practitioner entering the AI/ML field —
+            establishing the narrative arc for my entire portfolio journey.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-cogs"></i> Process</div>
+          <div class="field-value">
+            <ul>
+              <li>Reviewed course requirements and portfolio rubric from IWU orientation materials</li>
+              <li>Reflected on my professional experience at Navy Federal Credit Union and prior HPC research</li>
+              <li>Drafted a professional bio connecting my engineering background to AI/data analytics goals</li>
+              <li>Developed a personal value proposition articulating my unique cross-domain positioning</li>
+              <li>Built this portfolio page to serve as both a course requirement and a professional asset</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-tools"></i> Tools & Technologies Used</div>
+          <div class="tools-list">
+            <span class="tool-tag">HTML5</span>
+            <span class="tool-tag">CSS3</span>
+            <span class="tool-tag">JavaScript</span>
+            <span class="tool-tag">GitHub Pages</span>
+            <span class="tool-tag">VS Code</span>
+            <span class="tool-tag">IWU Brightspace</span>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-star"></i> Value Proposition</div>
+          <div class="field-value">
+            This artifact demonstrates my ability to communicate my professional identity clearly
+            and strategically — a critical skill for AI practitioners who must bridge technical
+            and business audiences. It shows self-awareness, professional maturity, and the
+            ability to position complex experience in an accessible and compelling way.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-gem"></i> Unique Value</div>
+          <div class="field-value">
+            My value is distinctive because I am not transitioning <em>into</em> technology —
+            I am already a Senior Android Developer with production experience at one of the
+            largest US financial institutions. I am bringing that engineering depth <em>into</em>
+            AI and data analytics, creating a cross-domain practitioner profile that is rare
+            and increasingly in demand.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-link"></i> Relevance</div>
+          <div class="field-value">
+            As AI becomes embedded in mobile applications, the need for engineers who understand
+            both the mobile platform layer and AI/data systems is growing rapidly. This portfolio
+            and the journey it documents directly addresses that intersection — positioning me
+            for leadership roles in AI-powered product engineering.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ARTIFACT 2 - PENDING UPDATE (Workshop Two) -->
+    <div class="placeholder-card">
+      <i class="fas fa-hourglass-half"></i>
+      <h3>Artifact 02 — Pending Update</h3>
+      <p>Workshop Two artifact (AIML-500) — content being revised and will be published shortly</p>
+    </div>
+
+    <!-- ARTIFACT 3 - WORKSHOP THREE: COMMUNICATING FOR LEARNING -->
+    <div class="artifact-card open" id="artifact-3">
+      <div class="artifact-header" onclick="toggleArtifact('artifact-3')">
+        <div>
+          <div class="artifact-num">Artifact 03</div>
+          <div class="artifact-title">Communicating for Learning — Explaining Neural Networks Simply</div>
+          <div class="artifact-course">AIML-500 · Machine Learning Fundamentals &nbsp;·&nbsp; Workshop Three</div>
+        </div>
+        <i class="fas fa-chevron-down artifact-toggle"></i>
+      </div>
+      <div class="artifact-body">
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-tag"></i> Title</div>
+          <div class="field-value">Neural Networks, Explained Simply — An Exercise in Communication for Learning</div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-info-circle"></i> Introduction</div>
+          <div class="field-value">
+            Albert Einstein is credited with saying that if you can't explain something simply,
+            you don't understand it well enough. This artifact took that challenge head-on:
+            partnering with a generative AI model to craft the clearest possible plain-language
+            explanation of neural networks, then refining it using evidence-based communication
+            and learning strategies from change leadership research.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-file-alt"></i> Description</div>
+          <div class="field-value">
+            An audience-friendly written explanation of neural networks developed for the
+            Workshop Three "Communicating for Learning" discussion. The piece explains how
+            brain-inspired networks of neurons learn from examples through weighted connections
+            and gradient descent, distinguishes deep learning from traditional machine learning
+            (automatic feature extraction, many-layered networks), introduces the major
+            architectures — CNNs for images, RNNs for sequential data, and GANs for generating
+            synthetic data — and covers practical concepts like overfitting and the role of
+            GPUs in making deep learning powerful over the last 10–15 years.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-layer-group"></i> Workshop Three Components</div>
+          <div class="field-value">
+            This artifact grew out of the full arc of Workshop Three, which had five distinct parts:
+            <ul>
+              <li><strong>3.1 — Adapting to Challenges:</strong> a reflective devotional on adaptive leadership, drawing on Moses (Exodus 3:11–12) and Esther (Esther 4:14) as models of courage, wisdom, and strategic thinking under pressure</li>
+              <li><strong>3.2 — Deep Learning &amp; Neural Networks Quiz:</strong> assessed core concepts including ANNs, CNNs, RNNs, GANs, gradient descent, overfitting, and GPU acceleration</li>
+              <li><strong>3.3 — Questions about Training Methods:</strong> an interactive dialogue with an AI chatbot coach exploring supervised, unsupervised, and reinforcement learning</li>
+              <li><strong>3.4 — Communicating for Learning (this artifact):</strong> applying communication and learning-science strategies to explain neural networks simply, with AI as a collaborative tool</li>
+              <li><strong>3.5 — Portfolio Artifact 3:</strong> curating and adapting this work for a professional audience</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-bullseye"></i> Objective</div>
+          <div class="field-value">
+            To demonstrate two competencies at once: genuine technical understanding of deep
+            learning fundamentals, and the ability to translate that understanding for
+            non-technical audiences — a skill critical for change leaders guiding
+            organizations through AI/ML adoption.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-cogs"></i> Process</div>
+          <div class="field-value">
+            <ul>
+              <li>Studied the workshop lesson on communication strategies and information presentation for learning</li>
+              <li>Completed the deep learning and neural networks lesson and quiz to solidify the underlying concepts</li>
+              <li>Prompted a generative AI model (Anthropic's Claude) for an analogy-based first draft, disclosing the tool per assignment requirements</li>
+              <li>Refined the explanation by deliberately applying learning-science strategies: chunking, storytelling (a child learning to recognize a dog), relevance and context, and progressive disclosure from foundations to advanced ideas</li>
+              <li>Adapted the discussion post into this portfolio artifact for a broader professional audience</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-tools"></i> Tools & Technologies Used</div>
+          <div class="tools-list">
+            <span class="tool-tag">Claude (Anthropic)</span>
+            <span class="tool-tag">Prompt Engineering</span>
+            <span class="tool-tag">IWU Brightspace</span>
+            <span class="tool-tag">SchoolAI Chatbot</span>
+            <span class="tool-tag">HTML5</span>
+            <span class="tool-tag">GitHub Pages</span>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-star"></i> Value Proposition</div>
+          <div class="field-value">
+            This artifact proves I can do more than pass a quiz on neural networks — I can teach
+            the concept. Organizations adopting AI don't just need engineers who understand the
+            technology; they need communicators who can bring executives, stakeholders, and teams
+            along. This piece shows disciplined use of generative AI as a collaborative tool,
+            transparent disclosure of that use, and intentional application of learning science
+            to technical communication.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-gem"></i> Unique Value</div>
+          <div class="field-value">
+            As a Senior Android Developer, I've spent years translating between technical and
+            business stakeholders in a regulated financial environment. This artifact extends
+            that skill into the AI/ML domain — pairing hands-on engineering credibility with
+            the change-leadership communication practices needed to drive real AI adoption.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-link"></i> Relevance</div>
+          <div class="field-value">
+            Every AI initiative lives or dies on adoption, and adoption depends on understanding.
+            The ability to explain neural networks — or any complex system — simply and accurately
+            is directly relevant to roles in AI product engineering, technical leadership, and
+            data-driven organizational change, which is exactly where my career is headed.
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="placeholder-card">
+      <i class="fas fa-plus-circle"></i>
+      <h3>Artifact 04 — Coming Soon</h3>
+      <p>Will be added as coursework progresses</p>
+    </div>
+    <div class="placeholder-card">
+      <i class="fas fa-plus-circle"></i>
+      <h3>Artifact 05 — Coming Soon</h3>
+      <p>Will be added as coursework progresses</p>
+    </div>
+
+  </div><!-- /content -->
+
+  <footer>
+    <strong style="color:var(--white)">Peter Tiewah</strong> &nbsp;·&nbsp;
+    M.S. AI — Data Analytics &nbsp;·&nbsp;
+    <span>Indiana Wesleyan University</span> &nbsp;·&nbsp; 2026
+  </footer>
+
+</main>
+
+<script>
+  function toggleArtifact(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  // Mobile sidebar
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+
+  // Animate progress bar on load
+  window.addEventListener('load', () => {
+    const fill = document.querySelector('.progress-fill');
+    const width = fill.style.width;
+    fill.style.width = '0%';
+    setTimeout(() => { fill.style.width = width; }, 300);
+  });
+</script>
+<script src="main.js"></script></body>
+</html>

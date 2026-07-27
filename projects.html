@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Projects | Peter Tiewah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* PROJECT CARDS */
+    .proj-section{padding:80px 80px;}
+    .proj-section.alt{background:var(--navy-mid);}
+
+    .proj-card{
+      background:var(--navy-card);
+      border:1px solid rgba(46,117,182,0.2);
+      border-radius:14px;overflow:hidden;
+      margin-bottom:28px;
+      transition:var(--t);
+    }
+    .proj-card:hover{border-color:rgba(100,255,218,0.3);box-shadow:0 16px 48px rgba(0,0,0,0.3);}
+
+    .proj-card-header{
+      padding:28px 32px 24px;
+      background:linear-gradient(135deg,rgba(46,117,182,0.12),rgba(13,27,42,0.5));
+      border-bottom:1px solid rgba(46,117,182,0.12);
+    }
+    .proj-header-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+    .proj-icon-num{display:flex;align-items:center;gap:14px;}
+    .proj-big-icon{font-size:36px;}
+    .proj-num{
+      font-family:var(--mono);font-size:11px;color:var(--cyan);
+      background:rgba(100,255,218,0.08);border:1px solid rgba(100,255,218,0.15);
+      border-radius:20px;padding:3px 12px;
+    }
+    .proj-badges{display:flex;gap:8px;flex-wrap:wrap;}
+    .badge{
+      font-family:var(--mono);font-size:10px;
+      border-radius:20px;padding:3px 10px;
+    }
+    .badge-live{background:rgba(76,175,80,0.15);color:#4caf50;border:1px solid rgba(76,175,80,0.3);}
+    .badge-wip{background:rgba(46,117,182,0.15);color:var(--blue-bright);border:1px solid rgba(46,117,182,0.3);}
+    .badge-planned{background:rgba(244,196,48,0.1);color:var(--gold);border:1px solid rgba(244,196,48,0.3);}
+    .badge-diff{background:rgba(139,26,26,0.15);color:#f87171;border:1px solid rgba(139,26,26,0.3);}
+
+    .proj-name{
+      font-size:22px;font-weight:700;color:var(--white);
+      margin-top:12px;margin-bottom:8px;
+    }
+    .proj-tagline{
+      font-size:14px;color:var(--gray-light);
+      line-height:1.7;max-width:680px;
+    }
+
+    .proj-card-body{padding:24px 32px 28px;}
+    .proj-body-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+    .proj-desc{font-size:14.5px;color:var(--gray-light);line-height:1.85;}
+    .proj-desc strong{color:var(--white);}
+    .proj-desc p{margin-bottom:12px;}
+
+    /* ARCHITECTURE DIAGRAM */
+    .arch-box{
+      background:rgba(13,27,42,0.8);
+      border:1px solid rgba(46,117,182,0.2);
+      border-radius:10px;padding:16px;
+      font-family:var(--mono);font-size:11px;
+    }
+    .arch-title{
+      color:var(--cyan);font-size:10px;letter-spacing:2px;
+      text-transform:uppercase;margin-bottom:12px;
+      padding-bottom:8px;border-bottom:1px solid rgba(46,117,182,0.2);
+    }
+    .arch-layer{
+      background:rgba(46,117,182,0.12);
+      border:1px solid rgba(46,117,182,0.2);
+      border-radius:6px;padding:8px 12px;
+      margin-bottom:6px;color:var(--gray-light);
+      display:flex;align-items:center;gap:8px;
+    }
+    .arch-layer:last-child{margin-bottom:0;}
+    .arch-layer i{color:var(--cyan);font-size:10px;flex-shrink:0;}
+    .arch-arrow{
+      text-align:center;color:var(--gray);font-size:10px;
+      margin:2px 0;opacity:0.6;
+    }
+
+    /* TECH STACK */
+    .proj-tech-section{margin-top:20px;}
+    .tech-label{
+      font-family:var(--mono);font-size:10px;color:var(--gray);
+      letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;
+    }
+
+    /* LINKS */
+    .proj-links-row{
+      display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;
+    }
+
+    /* FEATURED: Transformer Engineer */
+    .transformer-card{
+      background:linear-gradient(135deg,rgba(100,255,218,0.08),rgba(46,117,182,0.12),rgba(13,27,42,0.9));
+      border:1px solid rgba(100,255,218,0.25);
+      border-radius:14px;padding:36px;
+      margin-bottom:28px;
+      position:relative;overflow:hidden;
+    }
+    .transformer-card::before{
+      content:'';position:absolute;top:-100px;right:-100px;
+      width:300px;height:300px;
+      background:radial-gradient(circle,rgba(100,255,218,0.08),transparent 70%);
+    }
+    .transformer-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:24px;}
+    .transformer-icon{
+      font-size:48px;flex-shrink:0;
+      filter:drop-shadow(0 4px 12px rgba(100,255,218,0.3));
+    }
+    .transformer-meta{flex:1;}
+    .transformer-meta h3{
+      font-size:22px;font-weight:700;color:var(--white);margin-bottom:6px;
+    }
+    .transformer-meta p{font-size:14px;color:var(--gray-light);line-height:1.7;}
+    .transformer-features{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+      margin-top:20px;
+    }
+    .tf-feat{
+      background:rgba(100,255,218,0.05);
+      border:1px solid rgba(100,255,218,0.12);
+      border-radius:8px;padding:14px;
+    }
+    .tf-feat-icon{font-size:20px;margin-bottom:8px;}
+    .tf-feat-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:4px;}
+    .tf-feat-desc{font-size:11px;color:var(--gray);line-height:1.5;}
+
+    /* NEWS APP */
+    .news-mockup{
+      background:white;border-radius:14px;padding:16px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.3);
+      max-width:260px;
+    }
+    .news-header{
+      background:#1a1a2e;border-radius:8px;
+      padding:10px 12px;margin-bottom:12px;
+      display:flex;justify-content:space-between;align-items:center;
+    }
+    .news-logo{color:var(--cyan);font-family:var(--mono);font-size:12px;font-weight:700;}
+    .news-article{
+      border-bottom:1px solid #f1f5f9;padding-bottom:10px;margin-bottom:10px;
+    }
+    .news-cat{
+      font-size:9px;font-weight:700;text-transform:uppercase;
+      letter-spacing:1px;color:#0066cc;margin-bottom:4px;
+    }
+    .news-title{font-size:12px;font-weight:600;color:#1e293b;line-height:1.4;}
+    .news-meta{font-size:9px;color:#94a3b8;margin-top:4px;}
+    .news-img{
+      width:100%;height:80px;background:linear-gradient(135deg,#003087,#0066cc);
+      border-radius:6px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;
+      font-size:24px;
+    }
+
+    /* SIDE PROJECTS */
+    .side-proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .side-proj-card{
+      background:var(--navy-card);border:1px solid rgba(46,117,182,0.18);
+      border-radius:12px;padding:24px;transition:var(--t);
+    }
+    .side-proj-card:hover{border-color:rgba(100,255,218,0.25);transform:translateY(-4px);}
+    .side-proj-icon{font-size:32px;margin-bottom:14px;}
+    .side-proj-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px;}
+    .side-proj-desc{font-size:13px;color:var(--gray-light);line-height:1.65;margin-bottom:14px;}
+
+    @media(max-width:960px){
+      .proj-section{padding:60px 24px;}
+      .proj-body-grid{grid-template-columns:1fr;}
+      .transformer-features{grid-template-columns:1fr 1fr;}
+      .side-proj-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .transformer-features{grid-template-columns:1fr;}
+      .side-proj-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-sub">Android · AI · Lagos</div>
+  <nav class="sidebar-nav">
+    <a href="index.html"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html" class="active"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="portfolio.html"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('matrix-code.jpg');"></div>
+    <div class="page-hero-content">
+      <p class="page-eyebrow">Projects</p>
+      <h1 class="page-title">What I <span>Build</span></h1>
+      <p class="page-desc">From production banking apps to A* algorithms to on-device AI — a collection of things I've built, am building, and plan to build next.</p>
+    </div>
+  </div>
+
+  <!-- LIVE PROJECTS -->
+  <div class="proj-section">
+    <div class="section-divider reveal"><h2>✅ Live Projects</h2></div>
+
+    <!-- COVID Tracker -->
+    <div class="proj-card reveal">
+      <div class="proj-card-header">
+        <div class="proj-header-top">
+          <div class="proj-icon-num">
+            <span class="proj-big-icon">📱</span>
+            <span class="proj-num">Project 01</span>
+          </div>
+          <div class="proj-badges">
+            <span class="badge badge-live">● Live</span>
+          </div>
+        </div>
+        <div class="proj-name">COVID-19 Tracker</div>
+        <div class="proj-tagline">A full Android application tracking real-time COVID-19 statistics by country, built with Java, SQLite authentication, and REST API integration.</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-body-grid">
+          <div>
+            <div class="proj-desc">
+              <p>Built a complete Android application featuring <strong>secure SQLite login</strong>, live REST API data fetching, and a <strong>RecyclerView-based display</strong> with dynamic country search and filter controls.</p>
+              <p>Designed with separation of concerns — networking, storage, and UI handled in independent layers. Multi-fragment UI flows using EditText, Checkboxes, and platform controls to capture and process user health status data.</p>
+            </div>
+            <div class="proj-tech-section">
+              <div class="tech-label">Tech Stack</div>
+              <div class="pills">
+                <span class="pill highlight">Java</span>
+                <span class="pill">SQLite</span>
+                <span class="pill">REST API</span>
+                <span class="pill">RecyclerView</span>
+                <span class="pill">Fragments</span>
+                <span class="pill">JSON Parsing</span>
+                <span class="pill">Android Studio</span>
+              </div>
+            </div>
+            <div class="proj-links-row">
+              <a href="https://github.com/Sleekice" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-title">Architecture</div>
+            <div class="arch-layer"><i class="fas fa-mobile-alt"></i> UI Layer — Fragments, RecyclerView, Dialogs</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-network-wired"></i> Data Layer — REST API + JSON Parser</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-database"></i> Storage — SQLite (Login/Session)</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-shield-alt"></i> Auth — Google SQLite + Hashed Credentials</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOIR -->
+    <div class="proj-card reveal">
+      <div class="proj-card-header">
+        <div class="proj-header-top">
+          <div class="proj-icon-num">
+            <span class="proj-big-icon">🧭</span>
+            <span class="proj-num">Project 02</span>
+          </div>
+          <div class="proj-badges">
+            <span class="badge badge-live">● Live</span>
+          </div>
+        </div>
+        <div class="proj-name">SOIR — A* Pathfinding Visualizer</div>
+        <div class="proj-tagline">Python implementation of the A* algorithm with a real-time interactive Pygame visualizer, color-coded node states, and dynamic obstacle placement.</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-body-grid">
+          <div>
+            <div class="proj-desc">
+              <p>Designed and implemented the <strong>A* pathfinding algorithm from scratch</strong> in Python, using heuristic-based priority queues (heapq) to compute the optimal path between two coordinate points.</p>
+              <p>Features real-time visualization with <strong>color-coded node states</strong> (open, closed, path, wall, start, end), dynamic obstacle placement, and step-by-step traversal display. Applied graph theory concepts from HPC research (network topology, algorithmic efficiency) to build a clean, educational tool.</p>
+            </div>
+            <div class="proj-tech-section">
+              <div class="tech-label">Tech Stack</div>
+              <div class="pills">
+                <span class="pill highlight">Python</span>
+                <span class="pill">Pygame</span>
+                <span class="pill">A* Algorithm</span>
+                <span class="pill">heapq</span>
+                <span class="pill">Graph Theory</span>
+                <span class="pill">Priority Queues</span>
+              </div>
+            </div>
+            <div class="proj-links-row">
+              <a href="https://github.com/Sleekice" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-title">Algorithm Flow</div>
+            <div class="arch-layer"><i class="fas fa-map-marker-alt"></i> Set Start + End Nodes</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-border-all"></i> Build Grid — Wall Placement</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-calculator"></i> f(n) = g(n) + h(n) — Heuristic</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-list"></i> Priority Queue (heapq) — Open Set</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-route"></i> Backtrack Path — Reconstruct Route</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-paint-brush"></i> Pygame — Real-time Visualization</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSFORMER ENGINEER GPT -->
+    <div class="transformer-card reveal">
+      <div class="transformer-header">
+        <span class="transformer-icon">🔬</span>
+        <div class="transformer-meta">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <span class="proj-num">AI Tool</span>
+            <span class="badge badge-live">● Live</span>
+          </div>
+          <h3>The Transformer Engineer</h3>
+          <p>A specialized AI engineering mentor I built as a Custom GPT — designed to develop deep expertise in transformer architectures, LLMs, PyTorch, model training, and AI system design. Functions as a structured engineering mentor, not a general chatbot.</p>
+        </div>
+      </div>
+      <div class="transformer-features">
+        <div class="tf-feat">
+          <div class="tf-feat-icon">🧠</div>
+          <div class="tf-feat-title">Transformer Architecture</div>
+          <div class="tf-feat-desc">Deep guidance on attention mechanisms, encoder-decoder design, and LLM architecture from first principles.</div>
+        </div>
+        <div class="tf-feat">
+          <div class="tf-feat-icon">⚡</div>
+          <div class="tf-feat-title">PyTorch Implementation</div>
+          <div class="tf-feat-desc">Hands-on model building, training loops, optimization, and debugging in PyTorch.</div>
+        </div>
+        <div class="tf-feat">
+          <div class="tf-feat-icon">📚</div>
+          <div class="tf-feat-title">Documentation Habit</div>
+          <div class="tf-feat-desc">Encourages professional ADRs, architecture docs, learning logs, and testing reports alongside every project.</div>
+        </div>
+        <div class="tf-feat">
+          <div class="tf-feat-icon">🔎</div>
+          <div class="tf-feat-title">Research Paper Reading</div>
+          <div class="tf-feat-desc">Breaks down AI research papers into implementable concepts — Attention is All You Need, BERT, GPT, LLaMA.</div>
+        </div>
+        <div class="tf-feat">
+          <div class="tf-feat-icon">🚀</div>
+          <div class="tf-feat-title">LLM System Design</div>
+          <div class="tf-feat-desc">Guides production-quality AI system architecture, deployment patterns, and engineering best practices.</div>
+        </div>
+        <div class="tf-feat">
+          <div class="tf-feat-icon">📱</div>
+          <div class="tf-feat-title">Android + AI Bridge</div>
+          <div class="tf-feat-desc">Helps connect transformer knowledge directly to on-device mobile AI implementation.</div>
+        </div>
+      </div>
+      <div style="margin-top:24px;">
+        <a href="https://chatgpt.com/g/g-6a52584db314819187a9e0d82f1e9391-the-transformer-engineer" target="_blank" class="btn btn-outline"><i class="fas fa-external-link-alt"></i> Try The Transformer Engineer</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPCOMING PROJECTS -->
+  <div class="proj-section alt">
+    <div class="section-divider reveal"><h2>🚀 Upcoming Projects</h2></div>
+    <p class="reveal" style="color:var(--gray-light);font-size:15px;max-width:640px;line-height:1.8;margin-bottom:48px;">
+      These are the projects I'm actively planning and will build over the next 12 months. Each one is designed to showcase a specific combination of Android expertise and AI/ML capabilities — targeting FAANG, fintech, and senior engineering roles.
+    </p>
+
+    <!-- News App -->
+    <div class="proj-card reveal">
+      <div class="proj-card-header">
+        <div class="proj-header-top">
+          <div class="proj-icon-num">
+            <span class="proj-big-icon">📰</span>
+            <span class="proj-num">Upcoming 01</span>
+          </div>
+          <div class="proj-badges">
+            <span class="badge badge-wip">⚡ In Progress</span>
+            <span class="badge" style="background:rgba(46,117,182,0.1);color:var(--blue-bright);border:1px solid rgba(46,117,182,0.2);">⭐⭐⭐☆☆ Difficulty</span>
+          </div>
+        </div>
+        <div class="proj-name">Android News App</div>
+        <div class="proj-tagline">A clean, modern Android news aggregator with Kotlin, MVVM, Retrofit, and NewsAPI integration — the foundation for future AI summarization features.</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-body-grid">
+          <div>
+            <div class="proj-desc">
+              <p>Starting point for hands-on Kotlin development outside of work. A news aggregator using <strong>NewsAPI</strong> or similar free API, displaying articles by category with search, bookmarking, and offline reading via Room.</p>
+              <p>Will serve as the foundation for adding <strong>AI article summarization</strong> (Gemini API), sentiment analysis, and personalized feed recommendations as the project evolves.</p>
+            </div>
+            <div class="proj-tech-section">
+              <div class="tech-label">Planned Stack</div>
+              <div class="pills">
+                <span class="pill highlight">Kotlin</span>
+                <span class="pill">Jetpack Compose</span>
+                <span class="pill">MVVM</span>
+                <span class="pill">Retrofit</span>
+                <span class="pill">Room</span>
+                <span class="pill">Hilt</span>
+                <span class="pill">Coil</span>
+                <span class="pill">NewsAPI</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="news-mockup">
+              <div class="news-header">
+                <span class="news-logo">📰 NewsFlow</span>
+                <span style="color:var(--cyan);font-size:12px;">🔍</span>
+              </div>
+              <div class="news-article">
+                <div class="news-img">📱</div>
+                <div class="news-cat">Technology</div>
+                <div class="news-title">Google Announces Android 16 Features for Developers</div>
+                <div class="news-meta">2 hours ago · TechCrunch</div>
+              </div>
+              <div class="news-article">
+                <div class="news-cat">AI</div>
+                <div class="news-title">Gemini 2.0 Flash Sets New Benchmark on Mobile Inference</div>
+                <div class="news-meta">5 hours ago · The Verge</div>
+              </div>
+              <div class="news-article" style="border:none;margin:0;padding-bottom:0;">
+                <div class="news-cat">Finance</div>
+                <div class="news-title">Navy Federal Expands Mobile Banking Features</div>
+                <div class="news-meta">Yesterday · Bloomberg</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offline AI Chat -->
+    <div class="proj-card reveal">
+      <div class="proj-card-header">
+        <div class="proj-header-top">
+          <div class="proj-icon-num"><span class="proj-big-icon">🤖</span><span class="proj-num">Upcoming 02</span></div>
+          <div class="proj-badges">
+            <span class="badge badge-planned">⏳ Planned</span>
+            <span class="badge badge-diff">⭐⭐⭐⭐⭐ Difficulty</span>
+            <span class="badge" style="background:rgba(100,255,218,0.08);color:var(--cyan);border:1px solid rgba(100,255,218,0.2);">🏆 #1 Resume Impact</span>
+          </div>
+        </div>
+        <div class="proj-name">Offline AI Chat App — On-Device LLM</div>
+        <div class="proj-tagline">Run a large language model (Gemma-2B, Phi-3, or Llama-3) entirely on an Android device — no internet, no server, no API key. Local inference with INT4 quantization.</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-body-grid">
+          <div>
+            <div class="proj-desc">
+              <p>The most technically impressive mobile AI project possible. Uses <strong>MediaPipe Tasks / llama.cpp via JNI</strong> for on-device inference with quantized models (INT4/INT8). Implements KV caching, streaming token output, and on-device RAG with a local vector database.</p>
+              <p>Will showcase <strong>TensorFlow Lite, ONNX Runtime, NNAPI hardware acceleration</strong>, memory mapping for large model weights, and full offline conversation memory.</p>
+            </div>
+            <div class="proj-tech-section">
+              <div class="tech-label">Planned Stack</div>
+              <div class="pills">
+                <span class="pill highlight">Kotlin</span>
+                <span class="pill">Jetpack Compose</span>
+                <span class="pill">TensorFlow Lite</span>
+                <span class="pill">ONNX Runtime</span>
+                <span class="pill">MediaPipe</span>
+                <span class="pill">JNI / C++</span>
+                <span class="pill">Gemma-2B</span>
+                <span class="pill">NNAPI</span>
+                <span class="pill">Vector DB</span>
+              </div>
+            </div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-title">System Architecture</div>
+            <div class="arch-layer"><i class="fas fa-comment"></i> Compose UI — Chat + Markdown Renderer</div>
+            <div class="arch-arrow">↓ Flow&lt;String&gt; streaming tokens</div>
+            <div class="arch-layer"><i class="fas fa-microchip"></i> Inference Engine — MediaPipe / llama.cpp</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-weight"></i> INT4 Weights — mmap from disk (~1.6GB)</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-bolt"></i> Hardware — NNAPI / Qualcomm HTP / GPU</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-database"></i> KV Cache + Local Vector DB (RAG)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Finance -->
+    <div class="proj-card reveal">
+      <div class="proj-card-header">
+        <div class="proj-header-top">
+          <div class="proj-icon-num"><span class="proj-big-icon">💰</span><span class="proj-num">Upcoming 03</span></div>
+          <div class="proj-badges">
+            <span class="badge badge-planned">⏳ Planned</span>
+            <span class="badge badge-diff">⭐⭐⭐⭐⭐ Difficulty</span>
+            <span class="badge" style="background:rgba(100,255,218,0.08);color:var(--cyan);border:1px solid rgba(100,255,218,0.2);">🏆 #2 Resume Impact</span>
+          </div>
+        </div>
+        <div class="proj-name">AI Personal Finance Assistant</div>
+        <div class="proj-tagline">Think Navy Federal meets ChatGPT. A production-grade Android banking app with AI-powered transaction categorization, budget prediction, receipt scanning, and voice assistant.</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-body-grid">
+          <div>
+            <div class="proj-desc">
+              <p>Drawing directly on my NFCU experience, this app will showcase <strong>enterprise-grade multi-module Clean Architecture</strong>: encrypted SQLCipher Room database, Android Keystore biometric auth, WorkManager for offline-first sync, and ML Kit OCR for receipt scanning.</p>
+              <p>AI layer uses <strong>Gemini API</strong> for spending analysis, budget prediction, and financial advice. Features charts, push notifications, and voice assistant integration.</p>
+            </div>
+            <div class="proj-tech-section">
+              <div class="tech-label">Planned Stack</div>
+              <div class="pills">
+                <span class="pill highlight">Kotlin</span><span class="pill">Jetpack Compose</span>
+                <span class="pill">Clean Architecture</span><span class="pill">Multi-module</span>
+                <span class="pill">Gemini API</span><span class="pill">ML Kit OCR</span>
+                <span class="pill">CameraX</span><span class="pill">WorkManager</span>
+                <span class="pill">SQLCipher</span><span class="pill">Biometrics</span>
+              </div>
+            </div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-title">Module Architecture</div>
+            <div class="arch-layer"><i class="fas fa-cube"></i> :app</div>
+            <div class="arch-layer" style="margin-left:12px;"><i class="fas fa-database"></i> :core:database (Room + SQLCipher)</div>
+            <div class="arch-layer" style="margin-left:12px;"><i class="fas fa-wifi"></i> :core:network (Retrofit + OkHttp)</div>
+            <div class="arch-layer" style="margin-left:12px;"><i class="fas fa-robot"></i> :core:ai (Gemini abstraction)</div>
+            <div class="arch-layer" style="margin-left:12px;"><i class="fas fa-home"></i> :feature:dashboard</div>
+            <div class="arch-layer" style="margin-left:12px;"><i class="fas fa-list"></i> :feature:transactions</div>
+            <div class="arch-layer" style="margin-left:12px;"><i class="fas fa-camera"></i> :feature:receipt-scanner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Study Assistant -->
+    <div class="proj-card reveal">
+      <div class="proj-card-header">
+        <div class="proj-header-top">
+          <div class="proj-icon-num"><span class="proj-big-icon">📚</span><span class="proj-num">Upcoming 04</span></div>
+          <div class="proj-badges">
+            <span class="badge badge-planned">⏳ Planned</span>
+            <span class="badge badge-diff">⭐⭐⭐⭐⭐ Difficulty</span>
+          </div>
+        </div>
+        <div class="proj-name">AI Study Assistant</div>
+        <div class="proj-tagline">Upload PDFs, get AI summaries, generate quizzes and flashcards, build mind maps, and study smarter — directly on Android. Built for and used during my IWU M.S. AI coursework.</div>
+      </div>
+      <div class="proj-card-body">
+        <div class="proj-body-grid">
+          <div>
+            <div class="proj-desc">
+              <p>Uses <strong>PdfRenderer for text extraction</strong>, a local ONNX embedding model for semantic chunking, and a local vector database for RAG (Retrieval-Augmented Generation). Flashcards and quizzes generated via structured LLM prompts parsed into Compose state.</p>
+              <p>Mind maps rendered via custom <strong>Compose Canvas</strong> using Reingold-Tilford tree layout and Bezier curve connections with pinch-to-zoom.</p>
+            </div>
+            <div class="proj-tech-section">
+              <div class="tech-label">Planned Stack</div>
+              <div class="pills">
+                <span class="pill highlight">Kotlin</span><span class="pill">Jetpack Compose</span>
+                <span class="pill">PdfRenderer</span><span class="pill">ONNX</span>
+                <span class="pill">Vector DB</span><span class="pill">RAG</span>
+                <span class="pill">Gemini API</span><span class="pill">Canvas API</span>
+              </div>
+            </div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-title">RAG Pipeline</div>
+            <div class="arch-layer"><i class="fas fa-file-pdf"></i> Upload PDF → PdfRenderer Text Extraction</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-cut"></i> Semantic Chunking (512 tokens + 10% overlap)</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-project-diagram"></i> ONNX Embedding → 384-dim float vectors</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-database"></i> Local Vector DB → k-NN Search</div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-layer"><i class="fas fa-robot"></i> LLM → Quizzes / Flashcards / Mind Maps</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDE PROJECTS / FUTURE IDEAS -->
+  <div class="proj-section">
+    <div class="section-divider reveal"><h2>💡 Future Side Projects</h2></div>
+    <p class="reveal" style="color:var(--gray-light);font-size:15px;max-width:640px;line-height:1.8;margin-bottom:36px;">
+      Ideas in the backlog — some for fun, some for portfolio impact, all for learning.
+    </p>
+    <div class="side-proj-grid">
+      <div class="side-proj-card reveal">
+        <div class="side-proj-icon">🏠</div>
+        <div class="side-proj-title">Smart Home Dashboard</div>
+        <div class="side-proj-desc">MQTT + Raspberry Pi + ESP32 — control lights, locks, temp, camera feed, and AI energy predictions from Android.</div>
+        <div class="pills"><span class="pill">Kotlin</span><span class="pill">MQTT</span><span class="pill">IoT</span></div>
+      </div>
+      <div class="side-proj-card reveal reveal-delay-1">
+        <div class="side-proj-icon">🔧</div>
+        <div class="side-proj-title">Android Developer Toolkit</div>
+        <div class="side-proj-desc">A toolbox app for devs: JSON formatter, JWT decoder, QR generator, Base64, regex tester, color picker, REST client, SQLite browser.</div>
+        <div class="pills"><span class="pill">Kotlin</span><span class="pill">Compose</span><span class="pill">Utility</span></div>
+      </div>
+      <div class="side-proj-card reveal reveal-delay-2">
+        <div class="side-proj-icon">📊</div>
+        <div class="side-proj-title">Android Performance Benchmark Suite</div>
+        <div class="side-proj-desc">Measure cold/hot startup, Compose recompositions, memory leaks, jank, battery drain. Generate beautiful performance reports.</div>
+        <div class="pills"><span class="pill">Macrobenchmark</span><span class="pill">Baseline Profiles</span><span class="pill">ART</span></div>
+      </div>
+      <div class="side-proj-card reveal">
+        <div class="side-proj-icon">🏥</div>
+        <div class="side-proj-title">AI Medical Assistant</div>
+        <div class="side-proj-desc">Upload blood test PDFs, OCR lab reports, explain biomarkers, drug interaction lookup, medical history timeline. FHIR-ready.</div>
+        <div class="pills"><span class="pill">OCR</span><span class="pill">ML Kit</span><span class="pill">FHIR</span></div>
+      </div>
+      <div class="side-proj-card reveal reveal-delay-1">
+        <div class="side-proj-icon">👁️</div>
+        <div class="side-proj-title">AI Image Recognition Suite</div>
+        <div class="side-proj-desc">Object detection, face detection, OCR, barcode scanning, food and plant recognition — all via CameraX + ML Kit + TensorFlow Lite.</div>
+        <div class="pills"><span class="pill">CameraX</span><span class="pill">ML Kit</span><span class="pill">TFLite</span></div>
+      </div>
+      <div class="side-proj-card reveal reveal-delay-2">
+        <div class="side-proj-icon">🎮</div>
+        <div class="side-proj-title">Multiplayer Strategy Game</div>
+        <div class="side-proj-desc">Real-time multiplayer, AI bots, matchmaking, rankings, replays — Firebase backend with WebSockets. Shows networking and game architecture.</div>
+        <div class="pills"><span class="pill">Kotlin</span><span class="pill">Firebase</span><span class="pill">WebSockets</span></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="owl-mark">🦉</span>
+    Designed & built by <span>Peter Tiewah</span> · Laurel, Maryland · © 2026
+    <span class="owl-mark">🦉</span>
+  </footer>
+</main>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Peter Tiewah | Senior Android Developer</title>
+  <meta name="description" content="Senior Android Developer & M.S. AI Student. Built production banking apps at Navy Federal Credit Union. Based in Laurel, MD."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;
+      display:flex;flex-direction:column;justify-content:center;
+      position:relative;overflow:hidden;
+      padding:0 80px;
+    }
+    .hero-parallax{
+      position:absolute;inset:-60px;
+      background:url('matrix-code.jpg') center/cover no-repeat;
+      filter:brightness(0.12) saturate(0.5);
+      will-change:transform;
+    }
+    .hero-glow{
+      position:absolute;top:20%;right:10%;
+      width:700px;height:700px;
+      background:radial-gradient(circle,rgba(46,117,182,0.18) 0%,transparent 65%);
+      pointer-events:none;animation:breathe 6s ease-in-out infinite;
+    }
+    @keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+    .hero-content{position:relative;z-index:2;max-width:820px;}
+
+    .hero-greeting{
+      font-family:var(--mono);font-size:14px;
+      color:var(--cyan);letter-spacing:3px;margin-bottom:20px;
+      opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-name{
+      font-size:clamp(52px,8vw,96px);font-weight:700;
+      color:var(--white);letter-spacing:-4px;line-height:0.95;
+      margin-bottom:20px;
+      opacity:0;animation:fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-name .accent{
+      color:transparent;
+      -webkit-text-stroke:2px var(--cyan);
+    }
+    .hero-tagline{
+      font-size:clamp(18px,3vw,28px);font-weight:500;
+      color:var(--gray-light);margin-bottom:32px;
+      opacity:0;animation:fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-tagline strong{color:var(--blue-bright);}
+    .hero-bio{
+      font-size:16px;color:var(--gray);max-width:540px;
+      line-height:1.9;margin-bottom:44px;
+      opacity:0;animation:fadeUp 0.8s 0.8s forwards;
+    }
+    .hero-bio strong{color:var(--white);}
+    .hero-cta{
+      display:flex;gap:14px;flex-wrap:wrap;
+      opacity:0;animation:fadeUp 0.8s 1s forwards;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    /* stats bar */
+    .hero-stats{
+      display:flex;gap:48px;
+      padding:36px 80px;
+      background:var(--navy-mid);
+      border-top:1px solid rgba(46,117,182,0.2);
+      border-bottom:1px solid rgba(46,117,182,0.2);
+    }
+    .stat-num{
+      font-family:var(--mono);font-size:38px;font-weight:700;
+      color:var(--cyan);display:block;line-height:1;
+    }
+    .stat-label{
+      font-size:11px;color:var(--gray);
+      text-transform:uppercase;letter-spacing:2px;margin-top:6px;
+    }
+
+    /* ── APPLE SCROLL SECTIONS ── */
+    .scroll-feature{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:0;min-height:70vh;
+      align-items:stretch;
+    }
+    .scroll-feature.flip{direction:rtl;}
+    .scroll-feature.flip > *{direction:ltr;}
+    .sf-image{
+      position:relative;overflow:hidden;min-height:420px;
+    }
+    .sf-image img{
+      width:100%;height:100%;object-fit:cover;
+      transition:transform 0.8s var(--ease);
+      filter:brightness(0.75);
+    }
+    .sf-image:hover img{transform:scale(1.04);}
+    .sf-image-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(135deg,rgba(13,27,42,0.6),rgba(46,117,182,0.2));
+    }
+    .sf-image-caption{
+      position:absolute;bottom:24px;left:24px;
+      font-family:var(--mono);font-size:11px;
+      color:rgba(255,255,255,0.5);letter-spacing:2px;
+    }
+    .sf-text{
+      display:flex;flex-direction:column;justify-content:center;
+      padding:60px 64px;background:var(--navy-mid);
+    }
+    .sf-text .section-label{margin-bottom:16px;}
+    .sf-text h2{
+      font-size:clamp(26px,3.5vw,40px);font-weight:700;
+      color:var(--white);margin-bottom:20px;letter-spacing:-1px;
+      line-height:1.2;
+    }
+    .sf-text h2 span{color:var(--cyan);}
+    .sf-text p{
+      font-size:15.5px;color:var(--gray-light);
+      line-height:1.85;margin-bottom:16px;
+    }
+    .sf-text p strong{color:var(--white);}
+    .sf-text .btn{margin-top:20px;align-self:flex-start;}
+
+    /* ── OWL SIGNATURE ── */
+    .owl-section{
+      position:relative;overflow:hidden;
+      padding:0;
+    }
+    .owl-bg{
+      width:100%;height:520px;
+      object-fit:cover;object-position:center 30%;
+      filter:brightness(0.35) saturate(0.6);
+    }
+    .owl-content{
+      position:absolute;inset:0;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;padding:40px;
+    }
+    .owl-quote{
+      font-family:var(--mono);
+      font-size:clamp(16px,2.5vw,26px);
+      color:var(--white);max-width:680px;
+      line-height:1.7;margin-bottom:20px;
+      font-style:italic;
+    }
+    .owl-quote::before,.owl-quote::after{
+      content:'"';color:var(--cyan);font-size:1.4em;
+      font-family:Georgia,serif;
+    }
+    .owl-attr{
+      font-family:var(--mono);font-size:12px;
+      color:var(--gray);letter-spacing:2px;text-transform:uppercase;
+    }
+
+    /* ── TECH TICKER ── */
+    .tech-ticker{
+      background:var(--navy-card);
+      border-top:1px solid rgba(46,117,182,0.15);
+      border-bottom:1px solid rgba(46,117,182,0.15);
+      padding:16px 0;overflow:hidden;
+    }
+    .ticker-track{
+      display:flex;gap:40px;
+      animation:ticker 30s linear infinite;
+      width:max-content;
+    }
+    .ticker-track:hover{animation-play-state:paused;}
+    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    .ticker-item{
+      font-family:var(--mono);font-size:13px;
+      color:var(--gray);white-space:nowrap;
+      display:flex;align-items:center;gap:10px;
+    }
+    .ticker-item i{color:var(--cyan);font-size:11px;}
+
+    /* ── QUICK PROJECTS ── */
+    .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .proj-mini{
+      position:relative;overflow:hidden;border-radius:12px;
+      aspect-ratio:4/3;
+      background:var(--navy-card);
+      border:1px solid rgba(46,117,182,0.2);
+      transition:var(--t);
+      cursor:pointer;
+    }
+    .proj-mini:hover{transform:translateY(-6px);border-color:rgba(100,255,218,0.3);}
+    .proj-mini-icon{
+      font-size:48px;position:absolute;
+      top:50%;left:50%;transform:translate(-50%,-60%);
+      opacity:0.2;transition:var(--t);
+    }
+    .proj-mini:hover .proj-mini-icon{opacity:0.35;transform:translate(-50%,-60%) scale(1.1);}
+    .proj-mini-info{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:20px;
+      background:linear-gradient(to top,rgba(13,27,42,0.95),transparent);
+    }
+    .proj-mini-title{font-size:15px;font-weight:600;color:var(--white);margin-bottom:4px;}
+    .proj-mini-tech{font-family:var(--mono);font-size:11px;color:var(--cyan);}
+    .proj-mini-status{
+      position:absolute;top:14px;right:14px;
+      font-family:var(--mono);font-size:10px;
+      padding:3px 10px;border-radius:20px;
+    }
+    .status-live{background:rgba(76,175,80,0.15);color:#4caf50;border:1px solid rgba(76,175,80,0.3);}
+    .status-soon{background:rgba(46,117,182,0.15);color:var(--blue-bright);border:1px solid rgba(46,117,182,0.3);}
+
+    @media(max-width:960px){
+      #hero{padding:100px 24px 60px;}
+      .hero-stats{padding:28px 24px;gap:28px;flex-wrap:wrap;}
+      .scroll-feature{grid-template-columns:1fr;}
+      .scroll-feature.flip{direction:ltr;}
+      .sf-image{min-height:280px;}
+      .sf-text{padding:40px 24px;}
+      .proj-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .proj-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">PT.</div>
+  <div class="sidebar-sub">Android · AI · Lagos</div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="active"><i class="fas fa-house"></i> Home</a>
+    <a href="about.html"><i class="fas fa-user"></i> About</a>
+    <a href="experience.html"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="skills.html"><i class="fas fa-code"></i> Skills</a>
+    <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+    <a href="education.html"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="portfolio.html"><i class="fas fa-university"></i> IWU Portfolio</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
+  <div class="sidebar-status"><div class="dot"></div>Open to opportunities</div>
+  <div class="sidebar-socials">
+    <a href="https://github.com/Sleekice" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/ptiewah" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:cephasme@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+  </div>
+</aside>
+
+<main class="main">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-parallax"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <p class="hero-greeting">// Hello, world. My name is</p>
+      <h1 class="hero-name">Peter<br/><span class="accent">Tiewah.</span></h1>
+      <h2 class="hero-tagline">I build <strong>Android</strong> at scale.<br/>From Lagos to Laurel — I engineer the future.</h2>
+      <p class="hero-bio">
+        <strong>Senior Android Developer</strong> with 3+ years shipping production apps at
+        <strong>Navy Federal Credit Union</strong> for hundreds of thousands of members.
+        Specialist in <strong>Kotlin, Clean Architecture, and AI-powered mobile systems.</strong>
+        Currently pursuing a <strong>Master of Science in Artificial Intelligence</strong> at Indiana Wesleyan University.
+      </p>
+      <div class="hero-cta">
+        <a href="experience.html" class="btn btn-outline"><i class="fas fa-briefcase"></i> View My Work</a>
+        <a href="Peter_Tiewah_Resume.pdf" class="btn btn-solid" download><i class="fas fa-download"></i> Download Resume</a>
+        <a href="about.html" class="btn btn-outline"><i class="fas fa-user"></i> My Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="hero-stats">
+    <div>
+      <span class="stat-num" data-count="3">0</span>
+      <span class="stat-label">Years Experience</span>
+    </div>
+    <div>
+      <span class="stat-num" data-count="500">0</span>
+      <span class="stat-label">K+ Members Served</span>
+    </div>
+    <div>
+      <span class="stat-num" data-count="25">0</span>
+      <span class="stat-label">+ Features Shipped</span>
+    </div>
+    <div>
+      <span class="stat-num" data-count="20">0</span>
+      <span class="stat-label">Person Team @ NFCU</span>
+    </div>
+    <div>
+      <span class="stat-num" data-count="10">0</span>
+      <span class="stat-label">AI Courses (IWU MSAI)</span>
+    </div>
+  </div>
+
+  <!-- TECH TICKER -->
+  <div class="tech-ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><i class="fas fa-circle"></i> Kotlin</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Jetpack Compose</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> MVVM</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Clean Architecture</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Coroutines</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> StateFlow</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Hilt</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Room</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Retrofit</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Machine Learning</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Python</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> WireMock Cloud</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Android Profiler</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> ADB</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Azure DevOps</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Multi-module Architecture</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><i class="fas fa-circle"></i> Kotlin</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Jetpack Compose</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> MVVM</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Clean Architecture</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Coroutines</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> StateFlow</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Hilt</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Room</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Retrofit</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Machine Learning</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Python</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> WireMock Cloud</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Android Profiler</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> ADB</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Azure DevOps</span>
+      <span class="ticker-item"><i class="fas fa-circle"></i> Multi-module Architecture</span>
+    </div>
+  </div>
+
+  <!-- SCROLL FEATURE 1 — Origins -->
+  <div class="scroll-feature reveal">
+    <div class="sf-image">
+      <img src="lagos.jpg" alt="Lagos, Nigeria — Peter Tiewah's origins" loading="lazy"/>
+      <div class="sf-image-overlay"></div>
+      <div class="sf-image-caption">Lagos, Nigeria 🇳🇬</div>
+    </div>
+    <div class="sf-text">
+      <div class="section-label">Origins</div>
+      <h2>From <span>Lagos</span> to<br/>Laurel, Maryland</h2>
+      <p>Every engineer has a beginning. Mine is <strong>Lagos, Nigeria</strong> — one of the most dynamic, fast-moving cities in the world. That energy shaped how I think: urgently, creatively, and always with an eye on what's possible.</p>
+      <p>I carried that spirit across continents, through a Computer Science degree in Minnesota, two years building banking infrastructure at Navy Federal Credit Union, and now a Master's in Artificial Intelligence.</p>
+      <a href="about.html" class="btn btn-outline"><i class="fas fa-arrow-right"></i> Read My Story</a>
+    </div>
+  </div>
+
+  <!-- SCROLL FEATURE 2 — Code -->
+  <div class="scroll-feature flip reveal">
+    <div class="sf-image">
+      <img src="code-monitors.jpg" alt="Android development in progress" loading="lazy"/>
+      <div class="sf-image-overlay"></div>
+      <div class="sf-image-caption">Kotlin · Android Studio · Clean Architecture</div>
+    </div>
+    <div class="sf-text">
+      <div class="section-label">Craft</div>
+      <h2>Engineering<br/><span>at Scale</span></h2>
+      <p>At Navy Federal Credit Union, I owned end-to-end Android features used by <strong>hundreds of thousands of members</strong> — from the Account Summary experience and Credit Score integration to WireMock Cloud mock API infrastructure and AEM platform migrations.</p>
+      <p>I build with <strong>Kotlin, MVVM, Clean Architecture, and multi-module design</strong> — not just to make apps work, but to make them maintainable, testable, and production-ready.</p>
+      <a href="experience.html" class="btn btn-outline"><i class="fas fa-briefcase"></i> See Full Experience</a>
+    </div>
+  </div>
+
+  <!-- OWL SIGNATURE SECTION -->
+  <div class="owl-section reveal">
+    <img class="owl-bg" src="owl-orange.jpg" alt="Owl — Peter's spirit animal" loading="lazy"/>
+    <div class="owl-content">
+      <p class="owl-quote">The owl is the symbol of wisdom — it sees in the dark, moves silently, and strikes with precision. That's how I approach engineering.</p>
+      <p class="owl-attr">— Peter Tiewah · Android Engineer · AI Student</p>
+    </div>
+  </div>
+
+  <!-- SCROLL FEATURE 3 — AI -->
+  <div class="scroll-feature reveal">
+    <div class="sf-image">
+      <img src="code-laptop.jpg" alt="AI and machine learning study" loading="lazy"/>
+      <div class="sf-image-overlay"></div>
+      <div class="sf-image-caption">M.S. AI · IWU · Machine Learning</div>
+    </div>
+    <div class="sf-text">
+      <div class="section-label">Evolution</div>
+      <h2>Android + <span>Artificial Intelligence</span></h2>
+      <p>I'm not just learning AI — I'm learning how to <strong>bring AI into Android</strong>. My M.S. program at Indiana Wesleyan University covers machine learning fundamentals, data analytics, NLP, generative AI, and intelligent automation.</p>
+      <p>My upcoming projects explore on-device LLMs, AI-powered financial tools, and transformer architectures — combining everything I know about Android with the future of intelligent mobile systems.</p>
+      <a href="projects.html" class="btn btn-outline"><i class="fas fa-folder-open"></i> View Projects</a>
+    </div>
+  </div>
+
+  <!-- QUICK PROJECTS GRID -->
+  <div class="section">
+    <div class="section-divider reveal">
+      <h2>What I'm Building</h2>
+    </div>
+    <div class="proj-grid">
+      <a href="projects.html" class="proj-mini reveal">
+        <div class="proj-mini-icon">📱</div>
+        <span class="proj-mini-status status-live">Live</span>
+        <div class="proj-mini-info">
+          <div class="proj-mini-title">COVID-19 Tracker</div>
+          <div class="proj-mini-tech">Java · SQLite · REST API · RecyclerView</div>
+        </div>
+      </a>
+      <a href="projects.html" class="proj-mini reveal reveal-delay-1">
+        <div class="proj-mini-icon">🧭</div>
+        <span class="proj-mini-status status-live">Live</span>
+        <div class="proj-mini-info">
+          <div class="proj-mini-title">SOIR — A* Pathfinder</div>
+          <div class="proj-mini-tech">Python · Pygame · Graph Algorithms</div>
+        </div>
+      </a>
+      <a href="projects.html" class="proj-mini reveal reveal-delay-2" style="background:linear-gradient(135deg,rgba(46,117,182,0.2),rgba(13,27,42,0.8));">
+        <div class="proj-mini-icon">🤖</div>
+        <span class="proj-mini-status status-soon">In Progress</span>
+        <div class="proj-mini-info">
+          <div class="proj-mini-title">Offline AI Chat App</div>
+          <div class="proj-mini-tech">Kotlin · Gemma · TensorFlow Lite · ONNX</div>
+        </div>
+      </a>
+      <a href="projects.html" class="proj-mini reveal reveal-delay-3" style="background:linear-gradient(135deg,rgba(100,255,218,0.08),rgba(13,27,42,0.8));">
+        <div class="proj-mini-icon">💰</div>
+        <span class="proj-mini-status status-soon">Planned</span>
+        <div class="proj-mini-info">
+          <div class="proj-mini-title">AI Finance Assistant</div>
+          <div class="proj-mini-tech">Kotlin · Gemini API · Room · ML Kit</div>
+        </div>
+      </a>
+      <a href="projects.html" class="proj-mini reveal reveal-delay-4" style="background:linear-gradient(135deg,rgba(139,26,26,0.15),rgba(13,27,42,0.8));">
+        <div class="proj-mini-icon">📚</div>
+        <span class="proj-mini-status status-soon">Planned</span>
+        <div class="proj-mini-info">
+          <div class="proj-mini-title">AI Study Assistant</div>
+          <div class="proj-mini-tech">RAG · Vector DB · ONNX · Compose</div>
+        </div>
+      </a>
+      <a href="https://chatgpt.com/g/g-6a52584db314819187a9e0d82f1e9391-the-transformer-engineer" target="_blank" class="proj-mini reveal" style="background:linear-gradient(135deg,rgba(100,255,218,0.12),rgba(13,27,42,0.9));">
+        <div class="proj-mini-icon">🔬</div>
+        <span class="proj-mini-status status-live">Live</span>
+        <div class="proj-mini-info">
+          <div class="proj-mini-title">The Transformer Engineer</div>
+          <div class="proj-mini-tech">Custom GPT · LLM Engineering · AI Mentoring</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span class="owl-mark">🦉</span>
+    Designed & built by <span>Peter Tiewah</span> · Laurel, Maryland · © 2026
+    <span class="owl-mark">🦉</span>
+  </footer>
+
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
