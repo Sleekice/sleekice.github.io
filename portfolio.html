@@ -336,12 +336,12 @@
     <div class="progress-wrap">
       <div class="progress-label">
         <span>Portfolio Progress</span>
-        <!-- ✏️ UPDATE: change "2 of 5" as you add more artifacts -->
-        <span>2 of 5 artifacts complete · 1 pending update</span>
+        <!-- ✏️ UPDATE: change "3 of 5" as you add more artifacts -->
+        <span>3 of 5 artifacts complete · 1 pending update</span>
       </div>
       <div class="progress-bar">
         <!-- ✏️ UPDATE: change width percentage as you add artifacts (1=20%, 2=40%, 3=60%, 4=80%, 5=100%) -->
-        <div class="progress-fill" style="width:40%"></div>
+        <div class="progress-fill" style="width:60%"></div>
       </div>
     </div>
 
@@ -466,8 +466,7 @@
       <h2><i class="fas fa-folder-open"></i> Portfolio Artifacts</h2>
     </div>
 
-    <!-- ARTIFACT 1 - PLACEHOLDER READY TO FILL -->
-    <!-- ✏️ FILL IN: Replace the placeholder text below with your first artifact when your professor assigns it -->
+    <!-- ARTIFACT 1 -->
     <div class="artifact-card open" id="artifact-1">
       <div class="artifact-header" onclick="toggleArtifact('artifact-1')">
         <div>
@@ -702,11 +701,164 @@
 
       </div>
     </div>
-    <div class="placeholder-card">
-      <i class="fas fa-plus-circle"></i>
-      <h3>Artifact 04 — Coming Soon</h3>
-      <p>Will be added as coursework progresses</p>
+
+    <!-- ARTIFACT 4 - WORKSHOP FOUR: NAVIGATING HUMAN BIAS -->
+    <div class="artifact-card open" id="artifact-4">
+      <div class="artifact-header" onclick="toggleArtifact('artifact-4')">
+        <div>
+          <div class="artifact-num">Artifact 04</div>
+          <div class="artifact-title">Navigating Human Bias — Data Challenges and Fairness in Financial Mobile AI</div>
+          <div class="artifact-course">AIML-500 · Machine Learning Fundamentals &nbsp;·&nbsp; Workshop Four</div>
+        </div>
+        <i class="fas fa-chevron-down artifact-toggle"></i>
+      </div>
+      <div class="artifact-body">
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-tag"></i> Title</div>
+          <div class="field-value">
+            Navigating Human Bias as a Technical Leader — A Personal Value Statement and Field Strategies
+            for Mobile and Financial Technology
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-info-circle"></i> Introduction</div>
+          <div class="field-value">
+            AI systems look neutral. They are not. They learn from data that people choose, labels
+            that people apply, algorithms that people design, and results that people interpret —
+            and every one of those steps is a place where human bias can enter and be amplified at
+            scale. This artifact confronts that reality directly, pairing a technical understanding
+            of how data challenges produce biased models with a personal leadership commitment to
+            catching bias before it reaches a user's screen.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-file-alt"></i> Description</div>
+          <div class="field-value">
+            A personal value statement and set of field-specific strategies for navigating human bias,
+            developed for the Workshop Four "Navigating Human Bias" discussion and adapted here for a
+            professional audience. The work situates bias within the broader landscape of machine
+            learning data challenges — availability, quality, labeling, privacy and security,
+            imbalance, scalability, versioning, integration, drift, and annotation cost and quality —
+            and translates the course's leadership examples from education, healthcare, and general
+            technology into the domain I actually work in: mobile applications built for regulated
+            financial services.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-layer-group"></i> Workshop Four Components</div>
+          <div class="field-value">
+            This artifact draws on the full arc of Workshop Four, which had five parts:
+            <ul>
+              <li><strong>4.1 — Problems of Confusion:</strong> a devotional on clear communication in leadership, drawing on Paul's image of the trumpet that must sound a clear call (1 Corinthians 14:8–9) and the Tower of Babel (Genesis 11:6–7) as a study in how confusion dissolves unified effort</li>
+              <li><strong>4.2 — Data Challenges in Machine Learning Quiz:</strong> assessed the fourteen core data challenges in training and deploying ML applications, plus the volume, velocity, variety, and veracity dimensions of big data</li>
+              <li><strong>4.3 — Data Challenge Scenarios:</strong> an individual coaching dialogue with a pre-trained AI chatbot working through three real-world scenarios on data processing and cleaning, and on the challenges of data sharing, privacy, and security</li>
+              <li><strong>4.4 — Navigating Human Bias (this artifact):</strong> a personal value statement and field-specific strategies for addressing human bias in AI/ML change leadership</li>
+              <li><strong>4.5 — Portfolio Artifact 4:</strong> curating and adapting this work for a professional audience</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-quote-left"></i> Personal Value Statement</div>
+          <div class="field-value">
+            In building software for financial institutions, I recognize that a model's output is never
+            just a number — it becomes a decision a member reads on a screen I am responsible for. I
+            believe engineers own what their systems do to people, not only whether the code runs. My
+            core value is that fairness must be designed in and verified continuously, and that anyone
+            on a team should be able to raise a concern about a model's behavior without needing
+            permission or seniority to do so.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-shield-halved"></i> Field-Specific Strategies</div>
+          <div class="field-value">
+            <ul>
+              <li><strong>Design for fairness at the interface layer:</strong> treat explainability as a product requirement — if a model flags a transaction or shapes an offer, the app should be able to tell the member something true about why</li>
+              <li><strong>Audit data before it becomes a feature:</strong> check training data for representativeness and class imbalance across member demographics, and document known gaps rather than discovering them in production</li>
+              <li><strong>Test with diverse users, not just diverse test cases:</strong> extend usability and accessibility testing to include the groups most likely to be underserved by a model's predictions</li>
+              <li><strong>Build feedback channels into the product:</strong> give members and support staff a path to report outcomes that feel wrong, and route that signal back to the teams who retrain the model</li>
+              <li><strong>Monitor for drift as an operational duty:</strong> treat model performance degradation like any other production incident, with alerting, ownership, and a retraining plan</li>
+              <li><strong>Communicate clearly and early:</strong> apply the Workshop 4.1 lesson directly — an unclear explanation of how a model works produces the same organizational paralysis as the confusion at Babel</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-bullseye"></i> Objective</div>
+          <div class="field-value">
+            To demonstrate that I can identify where bias and data quality problems originate in the
+            machine learning lifecycle, and convert that technical understanding into leadership
+            practices that a real engineering team could adopt — moving from "bias is a data problem"
+            to a concrete, defensible set of commitments.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-cogs"></i> Process</div>
+          <div class="field-value">
+            <ul>
+              <li>Completed the Data Challenges lesson and quiz, outlining the fourteen data challenges that affect model effectiveness, accuracy, and scalability</li>
+              <li>Worked through three applied scenarios with the Data Challenge Scenarios AI coach, reasoning aloud about cleaning strategies and the tension between data utility and privacy under regulations like GDPR and HIPAA</li>
+              <li>Studied the course's three leadership examples (education, healthcare, technology) and identified which strategies transfer to mobile financial services and which do not</li>
+              <li>Drafted a personal value statement and field strategies, using generative AI with focused, iterative prompts and disclosing the tools used per assignment requirements</li>
+              <li>Reflected on the Workshop 4.1 devotional and connected the clarity theme to how model behavior must be explained to both members and internal stakeholders</li>
+              <li>Adapted the discussion post into this artifact by adding context for readers outside the course and reframing the strategies for a professional audience</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-tools"></i> Tools & Technologies Used</div>
+          <div class="tools-list">
+            <span class="tool-tag">Claude (Anthropic)</span>
+            <span class="tool-tag">Prompt Engineering</span>
+            <span class="tool-tag">SchoolAI Chatbot Coach</span>
+            <span class="tool-tag">IWU Brightspace</span>
+            <span class="tool-tag">HTML5</span>
+            <span class="tool-tag">GitHub Pages</span>
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-star"></i> Value Proposition</div>
+          <div class="field-value">
+            Most discussions of AI ethics stay abstract. This artifact does not — it names the specific
+            points in a machine learning pipeline where bias enters, and pairs each with a practice an
+            engineering team can actually run. That combination of technical specificity and leadership
+            framing is what organizations need from the people who ship AI features, and it shows I can
+            operate as more than an implementer.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-gem"></i> Unique Value</div>
+          <div class="field-value">
+            I have built features inside a regulated financial institution, where fairness, auditability,
+            and privacy are not aspirations but compliance obligations. That experience gives my
+            perspective on AI bias a practical edge: I know what it takes to get a control approved,
+            documented, and maintained in production — not just recommended in a slide deck.
+          </div>
+        </div>
+
+        <div class="artifact-field">
+          <div class="field-label"><i class="fas fa-link"></i> Relevance</div>
+          <div class="field-value">
+            Financial services is among the most heavily scrutinized domains for algorithmic fairness,
+            and mobile apps are where most members actually experience those algorithms. As lending,
+            fraud detection, and personalization become increasingly model-driven, engineers who can
+            reason about bias, data quality, and privacy — and communicate about them credibly — will
+            be the ones trusted to lead AI-powered product work.
+          </div>
+        </div>
+
+      </div>
     </div>
+
     <div class="placeholder-card">
       <i class="fas fa-plus-circle"></i>
       <h3>Artifact 05 — Coming Soon</h3>
